@@ -1,0 +1,6 @@
+.questionsList {
+  width: 17%;
+  padding-top: 25px;
+  border-right: 5px dashed #3e3d78;
+  overflow-y: auto;
+}

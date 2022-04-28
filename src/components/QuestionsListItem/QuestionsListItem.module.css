@@ -1,0 +1,57 @@
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 140px;
+  padding: 5px 20px 10px;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.activeItem {
+  background-color: rgba(214, 214, 226, 0.64);
+}
+
+.number {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.card {
+  flex-grow: 1;
+
+  padding: 5px 10px;
+  background-color: white;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  text-align: center;
+}
+
+.title {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  word-break: break-all;
+  text-overflow: ellipsis;
+}
+
+.imagePlaceholder {
+  margin-bottom: 5px;
+}
+
+.answers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 5px;
+  row-gap: 5px;
+}
+
+.answer {
+  width: 100%;
+  height: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+}

@@ -1,0 +1,120 @@
+.mainPage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle {
+  position: absolute;
+
+  width: 416px;
+  height: 416px;
+  border-radius: 50%;
+}
+
+.circleYellow {
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background-color: #fffb93;
+}
+
+.circlePink {
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  background-color: #fed9ff;
+}
+
+.circleQuestion {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.menu {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 450px;
+  height: 450px;
+  background-color: #d6d6e2;
+  border-radius: 5px;
+  padding: 65px;
+  text-align: center;
+}
+
+.quote {
+  position: absolute;
+  top: -160px;
+  left: -290px;
+  z-index: 1;
+}
+
+.logo {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 85px;
+  font-weight: 700;
+  line-height: 1;
+  color: #7774e1;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 0 #3e3d78, 2px 2px 0 #3e3d78, 3px 3px 0 #3e3d78, 4px 4px 0 #3e3d78,
+    5px 5px 0 #3e3d78, 6px 6px 0 #3e3d78;
+}
+
+.form {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 20px;
+  border-radius: 5px;
+}
+
+.pincode {
+  height: 60px;
+  padding: 15px;
+  margin-bottom: 12px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1;
+  color: black;
+  border: 2px dashed rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  outline: none;
+
+  text-align: center;
+}
+
+.pincode::placeholder {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* Убирает стрелочки сбоку*/
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type='number'],
+input[type='number']:hover,
+input[type='number']:focus {
+  appearance: none;
+  -moz-appearance: textfield;
+}
+/* Убирает стрелочки сбоку*/
+
+.auth {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+}

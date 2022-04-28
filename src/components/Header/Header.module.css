@@ -1,0 +1,31 @@
+.header {
+  height: 75px;
+  padding: 10px 20px;
+  border-bottom: 5px dashed #3e3d78;
+}
+
+.header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 32px;
+}
+
+.logo {
+  font-size: 48px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  line-height: 1;
+  color: #7774e1;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 0 #3e3d78, 2px 2px 0 #3e3d78, 3px 3px 0 #3e3d78, 4px 4px 0 #3e3d78,
+    5px 5px 0 #3e3d78, 6px 6px 0 #3e3d78;
+}
+
+/* .pageName {
+  font-size: 32px;
+}
+
+.questionsNumeration {
+  font-size: 32px;
+} */

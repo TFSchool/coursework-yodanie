@@ -1,0 +1,22 @@
+{
+  "guesses": [
+    {
+      "id": 1,
+      "questions": [
+        {
+          "id": 11,
+          "questionTitle": "Capital of Britain",
+          "answers": ["Berlin", "Moscow", "London", "Rome"],
+          "correctAnswer": "London"
+        },
+        {
+          "id": 12,
+          "questionTitle": "Capital of Russia",
+          "answers": ["Berlin", "Moscow", "London", "Rome"],
+          "correctAnswer": "Moscow"
+        }
+      ],
+      "gameName": "Столицы стран"
+    }
+  ]
+}

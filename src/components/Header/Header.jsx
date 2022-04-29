@@ -1,7 +1,6 @@
 import React from 'react'
-import Button from '../Buttons/Button'
-import styles from './Header.module.css'
 import { Link } from 'react-router-dom'
+import styles from './Header.module.css'
 
 const Header = ({ pageName, children }) => {
   return (

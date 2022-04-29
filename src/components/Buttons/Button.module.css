@@ -36,5 +36,5 @@
 .button:hover {
   top: 0;
   left: 0;
-  background-color: #5f5dbd;
+  background-color: var(--color-hoverViolet);
 }

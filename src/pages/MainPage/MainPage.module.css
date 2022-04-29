@@ -1,3 +1,5 @@
+@import '../../vars.css';
+
 .mainPage {
   position: relative;
   width: 100%;
@@ -6,6 +8,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transition: all 0.3s ease-in-out;
+}
+.mainPageBlurred {
+  filter: blur(10px);
 }
 
 .circle {
@@ -20,21 +26,23 @@
   top: 0;
   left: 0;
   z-index: -1;
-  background-color: #fffb93;
+  background-color: var(--color-yellow);
 }
 
 .circlePink {
   bottom: 0;
   right: 0;
   z-index: -1;
-  background-color: #fed9ff;
+  background-color: var(--color-pink);
 }
 
-.circleQuestion {
+.questionMark {
   position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: 220px;
+  height: 270px;
 }
 
 .menu {

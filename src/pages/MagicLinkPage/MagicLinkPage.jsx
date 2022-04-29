@@ -19,6 +19,7 @@ const MagicLinkPage = () => {
             <div className={styles.inputLabel}>Email</div>
             <input
               className={styles.input}
+              placeholder="player@mail.com"
               type="email"
               name="email"
               value={email}

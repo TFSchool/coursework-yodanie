@@ -3,3 +3,8 @@
   height: calc(100% - 75px);
   display: flex;
 }
+
+.buttons {
+  display: flex;
+  gap: 20px;
+}

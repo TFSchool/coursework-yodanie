@@ -1,0 +1,49 @@
+@import '../../vars.css';
+
+.guessListTitle {
+  margin: 40px 0;
+
+  font-size: 32px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.guessList {
+  display: flex;
+  flex-direction: column;
+}
+
+.guessListItem {
+  width: 650px;
+  height: 160px;
+  margin-bottom: 40px;
+  padding: 30px;
+
+  background-color: var(--color-yellow);
+  border: 5px solid var(--color-violetDark);
+  border-radius: 10px;
+  color: var(--color-violetDark);
+  font-size: 24px;
+}
+
+.guessListItem:last-child {
+  margin-bottom: 0;
+}
+
+.guessTitle {
+  margin-bottom: 40px;
+
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.guessBottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.counter {
+  font-size: 32px;
+  font-weight: 700;
+}

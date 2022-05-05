@@ -1,9 +1,14 @@
 :root {
-  --color-yellow: hsla(58, 100%, 79%, 1);
-  --color-violet: hsla(241, 65%, 67%, 1);
-  --color-violetDark: hsla(241, 33%, 36%, 1);
-  --color-hoverViolet: #5f5dbd;
-  --color-green: hsla(169, 65%, 67%, 1);
-  --color-pink: hsla(299, 100%, 93%, 1);
-  --color-grey: hsla(241, 18%, 86%, 1);
+  --color-white: hsl(1, 100%, 100%);
+  --color-yellow: hsl(58, 100%, 79%); /* #FFFB93 */
+  --color-violet: hsl(241, 65%, 67%); /* #7774E1 */
+  --color-violetDark: hsl(241, 33%, 36%); /* #3E3D78 */
+  --color-green: hsl(169, 65%, 67%); /* #74E1CE */
+  --color-pink: hsl(299, 100%, 93%); /* #FED9FF */
+  --color-grey: hsl(241, 18%, 86%); /* #D6D6E2 */
+
+  --color-hoverWhite: hsl(1, 0%, 95%);
+  --color-hoverViolet: hsl(241, 42%, 55%);
+  --color-hoverGreen: hsl(169, 70%, 60%);
+  --color-hoverYellow: hsl(58, 100%, 70%);
 }

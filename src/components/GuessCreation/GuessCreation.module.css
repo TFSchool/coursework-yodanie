@@ -1,0 +1,152 @@
+@import '../../vars.css';
+
+.guess {
+  width: 83%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 25px 20px;
+  height: 100%;
+  overflow: hidden;
+}
+
+.questionTitle {
+  display: block;
+
+  padding: 5px 20px;
+
+  color: #3e3d78;
+  font-family: 'Nunito', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+
+  text-align: center;
+  white-space: pre-wrap;
+}
+
+.questionTitleInput {
+  border: 2px solid #3e3d78;
+  border-radius: 5px;
+}
+
+.questionTitleInput::placeholder {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.actionButtons {
+  display: flex;
+  gap: 5px;
+  margin-left: auto;
+}
+
+.guessImageWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 560px;
+  height: 400px;
+  margin: 0 auto;
+  overflow: hidden;
+  padding: 25px;
+}
+
+.guessImageEditing {
+  border: 2px dashed var(--color-violetDark);
+}
+
+.guessPicture {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.guessPictureButtons {
+  margin-left: auto;
+}
+.pictureButton {
+  cursor: pointer;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background-size: contain;
+  background-position: center;
+  margin-right: 10px;
+}
+.pictureButton:last-child {
+  margin-right: 0;
+}
+.editButton {
+  background-image: url(../../assets/icons/edit-icon.svg);
+}
+.deleteButton {
+  background-image: url(../../assets/icons/delete-icon.svg);
+}
+
+.imageText {
+  font-size: 32px;
+  color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 20px;
+  text-align: center;
+  cursor: default;
+}
+
+.uploadImageButton {
+  cursor: pointer;
+  position: relative;
+  margin: 10px auto;
+  width: 50px;
+  height: 50px;
+  border: 2px solid #3e3d78;
+  background-color: white;
+  border-radius: 10px;
+  transition: all 0.2s linear;
+}
+.uploadImageButton::before,
+.uploadImageButton::after {
+  position: absolute;
+  content: '';
+  width: 3px;
+  height: 70%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  background-color: var(--color-violetDark);
+  transition: all 0.2s linear;
+}
+.uploadImageButton::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+.uploadImageButton:hover {
+  background-color: #3e3d78;
+}
+.uploadImageButton:hover::before,
+.uploadImageButton:hover::after {
+  background-color: white;
+}
+
+.userMessage {
+  opacity: 0;
+  transform: scale(0);
+
+  padding: 20px;
+  font-size: 20px;
+  margin: 0 auto;
+  transition: all 0.3s ease-in-out;
+}
+.errorActive {
+  color: red;
+  opacity: 1;
+  transform: scale(1);
+}
+.successActive {
+  color: green;
+  opacity: 1;
+  transform: scale(1);
+}

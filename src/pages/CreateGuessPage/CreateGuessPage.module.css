@@ -1,0 +1,13 @@
+.main {
+  width: 100%;
+  height: calc(100% - 75px);
+  display: flex;
+}
+.blurred {
+  filter: blur(10px);
+}
+
+.headerButtons {
+  display: flex;
+  gap: 10px;
+}

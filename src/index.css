@@ -31,6 +31,8 @@ body {
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
 }
 
 input,
@@ -93,4 +95,13 @@ h6 {
 dl,
 dd {
   margin: 0;
+}
+
+.fileInput {
+  display: none;
+}
+
+.icon {
+  width: 25px;
+  height: 25px;
 }

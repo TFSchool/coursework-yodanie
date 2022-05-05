@@ -1,3 +1,5 @@
+@import '../../vars.css';
+
 .guessAnswers {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -9,7 +11,7 @@
   display: flex;
   align-items: center;
   height: 100px;
-  border: 2px solid #3e3d78;
+  border: 2px solid var(--color-violetDark);
   border-radius: 10px;
   padding: 20px;
 }
@@ -27,22 +29,22 @@
   font-size: 20px;
   font-weight: 700;
   text-transform: uppercase;
-  background-color: #fff;
+  background-color: white;
   border-radius: 50%;
-  border: 2px solid #3e3d78;
+  border: 2px solid var(--color-violetDark);
 }
 
 .answerA {
-  background-color: #fed9ff;
+  background-color: var(--color-pink);
 }
 .answerB {
-  background-color: #fffb93;
+  background-color: var(--color-yellow);
 }
 .answerC {
-  background-color: #74e1ce;
+  background-color: var(--color-green);
 }
 .answerD {
-  background-color: #d6d6e2;
+  background-color: var(--color-grey);
 }
 
 .answerOption {
@@ -98,11 +100,11 @@
   height: 90%;
   opacity: 0;
 }
-
 .checkMark:hover {
   opacity: 1;
+  width: 90%;
+  height: 90%;
 }
-
 .selectedAnswer.checkMark {
   opacity: 1;
 }

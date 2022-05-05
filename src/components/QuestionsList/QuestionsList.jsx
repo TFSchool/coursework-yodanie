@@ -8,7 +8,7 @@ const QuestionsList = ({ savedQuestions, setSavedQuestions, setIndexOfDeletedQue
   return (
     <>
       <section className={styles.questionsList}>
-        {savedQuestions !== null && savedQuestions.length > 0 ? (
+        {savedQuestions.length > 0 ? (
           savedQuestions.map((question, index) => (
             <NavLink
               to={`/create-guess/question/${question.id}`}

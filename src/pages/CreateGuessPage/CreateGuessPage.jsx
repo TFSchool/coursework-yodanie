@@ -9,17 +9,19 @@ import ModalNewGuess from '../../components/ModalNewGuess'
 import { useParams } from 'react-router-dom'
 
 const CreateGuessPage = () => {
-  const [savedQuestions, setSavedQuestions] = useState(null)
+  const [savedQuestions, setSavedQuestions] = useState([])
+  const [initLoadCompleted, setInitLoadCompleted] = useState(false)
   const [modalNewGuessActive, setModalNewGuessActive] = useState(false)
   const [indexOfDeletedQuestion, setIndexOfDeletedQuestion] = useState(null)
 
   useEffect(() => {
-    if (savedQuestions === null) {
+    if (savedQuestions.length === 0) {
       const storageData = JSON.parse(localStorage.getItem('savedQuestions'))
       if (storageData) {
         setSavedQuestions(storageData)
       }
     }
+    setInitLoadCompleted(true)
   }, [])
 
   const func = () => {}
@@ -45,6 +47,7 @@ const CreateGuessPage = () => {
           setIndexOfDeletedQuestion={setIndexOfDeletedQuestion}
         />
         <GuessCreation
+          initLoadCompleted={initLoadCompleted}
           savedQuestions={savedQuestions}
           setSavedQuestions={setSavedQuestions}
           indexOfDeletedQuestion={indexOfDeletedQuestion}

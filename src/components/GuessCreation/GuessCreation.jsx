@@ -7,7 +7,12 @@ import { v4 as uuid } from 'uuid'
 import validateError from './validation'
 import { useNavigate, useParams } from 'react-router-dom'
 
-const GuessCreation = ({ savedQuestions, setSavedQuestions, indexOfDeletedQuestion }) => {
+const GuessCreation = ({
+  initLoadCompleted,
+  savedQuestions,
+  setSavedQuestions,
+  indexOfDeletedQuestion,
+}) => {
   const [questionTitle, setQuestionTitle] = useState('')
   const [answersData, setAnswersData] = useState({
     answerA: '',
@@ -45,19 +50,18 @@ const GuessCreation = ({ savedQuestions, setSavedQuestions, indexOfDeletedQuesti
     clearQuestiondata()
 
     if (urlParams.id) {
-      const activeQuestion =
-        savedQuestions !== null && savedQuestions.find(q => q.id === urlParams.id)
+      const activeQuestion = savedQuestions.find(q => q.id === urlParams.id)
       if (activeQuestion) {
         setQuestionTitle(activeQuestion.questionTitle)
         setAnswersData(activeQuestion.answersData)
         setSelectedAnswer(activeQuestion.correctAnswer)
         setQuestionImagePreview(activeQuestion.questionImagePreview)
       }
-      if (savedQuestions !== null && savedQuestions.length === 0) {
+      if (initLoadCompleted && savedQuestions.length === 0) {
         navigate(`/create-guess`)
         return
       }
-      if (savedQuestions !== null && !savedQuestions.some(q => q.id === urlParams.id)) {
+      if (initLoadCompleted && !savedQuestions.some(q => q.id === urlParams.id)) {
         const nextId = savedQuestions[indexOfDeletedQuestion]
           ? savedQuestions[indexOfDeletedQuestion].id
           : savedQuestions[savedQuestions.length - 1].id

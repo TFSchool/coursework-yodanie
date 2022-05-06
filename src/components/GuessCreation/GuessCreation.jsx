@@ -6,7 +6,7 @@ import cn from 'classnames'
 import { v4 as uuid } from 'uuid'
 import { validateError } from '../../utils/validators'
 import { useNavigate, useParams } from 'react-router-dom'
-
+import { supabase } from '../../supabaseClient'
 const GuessCreation = ({
   initLoadCompleted,
   savedQuestions,
@@ -41,6 +41,8 @@ const GuessCreation = ({
     setSelectedAnswer(null)
     setQuestionImagePreview(null)
   }
+
+  console.log(supabase.auth.user())
 
   useEffect(() => {
     clearUserMessages()

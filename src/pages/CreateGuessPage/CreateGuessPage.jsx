@@ -36,8 +36,8 @@ const CreateGuessPage = () => {
   const createNewGuessHandler = async e => {
     e.preventDefault()
 
-    if (isTitleValid(gameTitle) === false) {
-      setModalValidError('Введите название (минимум 5 символов)')
+    if (gameTitle.length === 0) {
+      setModalValidError('Введите название')
       return
     }
 

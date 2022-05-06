@@ -9,7 +9,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s linear;
 }
 .mainPageBlurred {
   filter: blur(10px);
@@ -52,9 +52,8 @@
   flex-direction: column;
   justify-content: space-between;
   width: 450px;
-  height: 450px;
   background-color: #d6d6e2;
-  border-radius: 5px;
+  border-radius: 30px;
   padding: 40px 30px;
   text-align: center;
 }
@@ -67,6 +66,8 @@
 }
 
 .logo {
+  margin-bottom: 40px;
+
   font-family: 'Quicksand', sans-serif;
   font-size: 85px;
   font-weight: 700;

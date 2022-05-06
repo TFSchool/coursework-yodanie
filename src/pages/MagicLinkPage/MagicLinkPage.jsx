@@ -2,6 +2,7 @@ import { useState } from 'react'
 import styles from './MagicLinkPage.module.css'
 import { supabase } from '../../supabaseClient'
 import Loader from '../../components/UI/Loader/Loader'
+import Button from '../../components/UI/Buttons/Button'
 
 const MagicLinkPage = () => {
   const [email, setEmail] = useState('')
@@ -9,7 +10,9 @@ const MagicLinkPage = () => {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [error, setError] = useState(null)
 
-  const submitHandler = async event => {
+  const emailInputHandler = e => setEmail(e.target.value)
+
+  const handleMagicLinkSubmit = async event => {
     event.preventDefault()
 
     try {
@@ -24,10 +27,6 @@ const MagicLinkPage = () => {
     }
   }
 
-  const handleMagicLinkSubmit = e => {
-    e.preventDefault()
-  }
-
   return (
     <>
       {isLoading && <Loader />}
@@ -36,7 +35,7 @@ const MagicLinkPage = () => {
         <div className={styles.signup}>
           <h1 className={styles.title}>MagicLink</h1>
           <div>*Авторизация по ссылке, которая придет на указанную электронную почту</div>
-          <form className={styles.form} onSubmit={submitHandler}>
+          <form className={styles.form} onSubmit={handleMagicLinkSubmit}>
             <div className={styles.inputLabel}>Email</div>
             <input
               className={styles.input}
@@ -44,9 +43,15 @@ const MagicLinkPage = () => {
               type="email"
               name="email"
               value={email}
-              onChange={e => setEmail(e.target.value)}
+              onChange={emailInputHandler}
             />
-            {/* <Button type="submit" text="Отправить" size="medium" /> */}
+            <Button
+              type="submit"
+              text="Отправить"
+              bgcolor="violet"
+              size="medium"
+              customStyle="center"
+            />
           </form>
         </div>
       </div>

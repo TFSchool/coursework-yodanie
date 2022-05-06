@@ -42,7 +42,7 @@ const GuessCreation = ({
     setQuestionImagePreview(null)
   }
 
-  console.log(supabase.auth.user())
+  // console.log(supabase.auth.user())
 
   useEffect(() => {
     clearUserMessages()

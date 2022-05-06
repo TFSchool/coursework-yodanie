@@ -1,17 +1,15 @@
 @import '../../vars.css';
 
 .header {
-  height: 75px;
-  padding: 10px 20px;
-  border-bottom: 5px dashed var(--color-violetDark);
-}
-
-.header__inner {
-  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  height: 10vh;
+  padding: 10px 20px;
+
   font-size: 32px;
+  border-bottom: 5px dashed var(--color-violetDark);
 }
 
 .logo {
@@ -31,11 +29,3 @@
   text-shadow: 1px 1px 0 var(--color-violetDark), 2px 2px 0 var(--color-violetDark),
     3px 3px 0 var(--color-violetDark);
 }
-
-/* .pageTitle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 1;
-  transform: translate3d(-50%, -50%, 0);
-} */

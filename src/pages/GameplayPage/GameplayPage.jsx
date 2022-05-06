@@ -20,10 +20,10 @@ const GameplayPage = () => {
   const fetchGameData = async () => {
     setIsLoading(true)
     try {
-      const { data } = await supabase.from('quizes').select().eq('id', gameId)
-      if (data.length < 1) setFetchError('No data bro')
+      const { data } = await supabase.from('games').select().eq('id', gameId)
+      if (data.length === 0) setFetchError('No data bro')
       setGameData(data[0])
-      setQuestionsNumber(data[0].content.questions.length)
+      setQuestionsNumber(data[0].gameContent.questions.length)
     } catch (error) {
       console.log(`Ошибочка... ${error}`)
     } finally {
@@ -37,10 +37,10 @@ const GameplayPage = () => {
       {!fetchError && isLoading && <Loader />}
       {Object.keys(gameData).length && (
         <>
-          <Header pageTitle={gameData.title}>
+          <Header pageTitle={gameData.gameTitle}>
             <div className="questionsNumber">{`1/${questionsNumber}`}</div>
           </Header>
-          <GuessGameplay gameData={gameData.content.questions} />
+          <GuessGameplay gameData={gameData.gameContent.questions} />
         </>
       )}
     </>

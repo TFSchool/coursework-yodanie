@@ -4,7 +4,7 @@ import Button from '../UI/Buttons/Button'
 import styles from './GuessCreation.module.css'
 import cn from 'classnames'
 import { v4 as uuid } from 'uuid'
-import validateError from './validation'
+import { validateError } from '../../utils/validators'
 import { useNavigate, useParams } from 'react-router-dom'
 
 const GuessCreation = ({
@@ -24,11 +24,10 @@ const GuessCreation = ({
   const [questionImageFile, setQuestionImageFile] = useState(null)
   const [questionImagePreview, setQuestionImagePreview] = useState(null)
   const [validationError, setValidationError] = useState(null)
-  const [successMessage, setSuccessMessage] = useState(null)
   const urlParams = useParams()
   const navigate = useNavigate()
 
-  const clearUserMessages = () => (setValidationError(null), setSuccessMessage(null))
+  const clearUserMessages = () => setValidationError(null)
 
   const clearQuestiondata = () => {
     // Очистка полей
@@ -42,8 +41,6 @@ const GuessCreation = ({
     setSelectedAnswer(null)
     setQuestionImagePreview(null)
   }
-
-  const func = () => console.log(urlParams.id)
 
   useEffect(() => {
     clearUserMessages()
@@ -103,6 +100,8 @@ const GuessCreation = ({
   const newQuestionHandler = e => {
     e.preventDefault()
 
+    console.log(questionImageFile)
+
     const error = validateError(questionTitle, answersData, selectedAnswer)
     if (error) {
       setValidationError(error)
@@ -121,7 +120,6 @@ const GuessCreation = ({
       newData[editingIndex] = newQuestion
       setSavedQuestions(newData)
       localStorage.setItem('savedQuestions', JSON.stringify(newData))
-      setSuccessMessage('Изменения успешно сохранены!')
     } else {
       newQuestion.id = uuid()
       setSavedQuestions([...savedQuestions, newQuestion])
@@ -164,7 +162,9 @@ const GuessCreation = ({
                   onClick={deleteImageHandler}
                 ></button>
               </div>
-              <img className={styles.guessPicture} src={questionImagePreview} alt="" />
+              <div className={styles.guessPicture}>
+                <img src={questionImagePreview} alt="картинка вопроса" />
+              </div>
             </div>
           </>
         ) : (
@@ -181,14 +181,8 @@ const GuessCreation = ({
           </div>
         )}
 
-        <div
-          className={cn(
-            styles.userMessage,
-            validationError && styles.errorActive,
-            successMessage && styles.successActive
-          )}
-        >
-          {validationError || successMessage || 'исправляем'}
+        <div className={cn(styles.userMessage, validationError && styles.errorActive)}>
+          {validationError}
         </div>
 
         <Answers

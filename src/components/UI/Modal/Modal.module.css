@@ -65,6 +65,52 @@
   border-radius: 5px;
 }
 
+.modal label {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.modal input {
+  width: 100%;
+
+  height: 50px;
+  padding: 15px;
+  margin: 10px 0 20px 0;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1;
+  color: black;
+  background-color: white;
+  border-radius: 12px;
+  border: 2px solid black;
+  outline: none;
+}
+
+.modal input::placeholder {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.userMessage {
+  opacity: 0;
+  transform: scale(0);
+
+  height: 30px;
+  margin: 20px auto;
+
+  text-align: center;
+  color: red;
+  font-size: 20px;
+  transition: all 0.3s ease-in-out;
+}
+.errorActive {
+  opacity: 1;
+  transform: scale(1);
+}
+
 /* Крестик */
 .closeModal {
   position: absolute;
@@ -98,33 +144,4 @@
 }
 .closeModal:hover {
   transform: rotate(90deg);
-}
-
-.modal label {
-  font-size: 20px;
-  font-weight: 700;
-}
-
-.modal input {
-  width: 100%;
-
-  height: 50px;
-  padding: 15px;
-  margin: 10px 0 20px 0;
-  font-family: 'Nunito', sans-serif;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 1;
-  color: black;
-  background-color: white;
-  border-radius: 12px;
-  border: 2px solid black;
-  outline: none;
-}
-
-.modal input::placeholder {
-  font-family: 'Nunito', sans-serif;
-  font-weight: 700;
-  font-size: 22px;
-  color: rgba(0, 0, 0, 0.5);
 }

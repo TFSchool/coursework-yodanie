@@ -11,7 +11,7 @@ const GuessGameplay = ({ gameData }) => {
     setSelectedAnswer(e.currentTarget.name)
   }
 
-  const questionData = gameData[1]
+  const questionData = gameData[0]
 
   return (
     <div className={styles.guessGameplay}>

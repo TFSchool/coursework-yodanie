@@ -84,3 +84,9 @@
 .center {
   margin: 10px auto;
 }
+.spacing {
+  margin-right: 10px;
+}
+.spacing:last-child {
+  margin-right: 0;
+}

@@ -38,6 +38,39 @@ const MainPage = () => {
           <img className={styles.questionMark} src={QuestionMark} alt="question mark" />
         </div>
 
+        <nav className={styles.nav}>
+          <Button
+            onClick={authModalHandler}
+            text="Войти"
+            bgcolor="violet"
+            size="small"
+            customStyle="spacing"
+          />
+          <Button
+            onClick={signupModalHandler}
+            text="Регистрация"
+            bgcolor="violet"
+            size="small"
+            customStyle="spacing"
+          />
+          <MyLink
+            to="magic-link"
+            bgcolor="violet"
+            size="small"
+            text="MagicLink"
+            customStyle="spacing"
+          />
+          <MyLink
+            to="create-guess"
+            bgcolor="green"
+            size="small"
+            text="Создать квиз"
+            customStyle="spacing"
+          />
+
+          <MyLink to="profile" bgcolor="yellow" size="small" text="Профиль" customStyle="spacing" />
+        </nav>
+
         <div className={styles.menu}>
           <img
             className={styles.quote}
@@ -52,25 +85,20 @@ const MainPage = () => {
               value={pincode}
               onChange={pincodeHandler}
               className={styles.pincode}
-              type="number"
+              type="text"
               placeholder="Введите код доступа"
             />
             <MyLink
               to={`guess-play/${pincode}`}
               text="Присоединиться"
               bgcolor="violet"
-              size="big"
+              size="medium"
+              customStyle="center"
             />
           </form>
         </div>
-        <div className={styles.auth}>
-          <Button onClick={authModalHandler} text="Войти" bgcolor="violet" size="medium" />
-          <Button onClick={signupModalHandler} text="Регистрация" bgcolor="green" size="medium" />
 
-          <Link to="magic-link">MagicLink</Link>
-          <Link to="create-guess">Создать квиз</Link>
-          <Link to="profile">Профиль</Link>
-        </div>
+        <footer>made by Dan</footer>
       </main>
     </>
   )

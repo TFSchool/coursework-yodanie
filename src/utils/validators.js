@@ -1,8 +1,12 @@
+export const isTitleValid = title => title.length > 4
+
 export const validateError = (questionTitle, answersData, selectedAnswer) => {
   const answers = Object.values(answersData)
-  if (questionTitle.length < 5) {
+
+  if (isTitleValid(questionTitle) === false) {
     return 'Вопрос должен содержать не менее пяти символов'
   }
+
   if (answers.some(input => input.length === 0)) {
     return 'Пожалуйста, заполните поля'
   }
@@ -15,5 +19,3 @@ export const validateError = (questionTitle, answersData, selectedAnswer) => {
 
   return null
 }
-
-export default validateError

@@ -2,7 +2,7 @@
   "guesses": [
     {
       "id": 1,
-      "gameName": "Столицы стран",
+      "gameTitle": "Столицы стран",
       "questions": [
         {
           "id": 11,

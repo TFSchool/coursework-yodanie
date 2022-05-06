@@ -6,13 +6,20 @@ import GuessCreation from '../../components/GuessCreation/GuessCreation'
 import Button from '../../components/UI/Buttons/Button'
 import cn from 'classnames'
 import ModalNewGuess from '../../components/ModalNewGuess'
-import { useParams } from 'react-router-dom'
+import { v4 as uuid } from 'uuid'
+import Loader from '../../components/UI/Loader/Loader'
+import { isTitleValid } from '../../utils/validators'
 
 const CreateGuessPage = () => {
+  const [isLoading, setIsLoading] = useState(false)
   const [savedQuestions, setSavedQuestions] = useState([])
   const [initLoadCompleted, setInitLoadCompleted] = useState(false)
-  const [modalNewGuessActive, setModalNewGuessActive] = useState(false)
   const [indexOfDeletedQuestion, setIndexOfDeletedQuestion] = useState(null)
+  const [gameTitle, setGameTitle] = useState('')
+
+  // Modals
+  const [modalNewGuessActive, setModalNewGuessActive] = useState(false)
+  const [modalValidError, setModalValidError] = useState(null)
 
   useEffect(() => {
     if (savedQuestions.length === 0) {
@@ -24,19 +31,65 @@ const CreateGuessPage = () => {
     setInitLoadCompleted(true)
   }, [])
 
-  const func = () => {}
   const newGuessModalHandler = () => setModalNewGuessActive(true)
+
+  const createNewGuessHandler = async e => {
+    e.preventDefault()
+
+    if (isTitleValid(gameTitle) === false) {
+      setModalValidError('Введите название (минимум 5 символов)')
+      return
+    }
+
+    console.log(savedQuestions)
+
+    // setIsLoading(true)
+    // const result = {
+    //   id: uuid(),
+    //   gameTitle,
+    //   answers: [...answersData],
+    //   correctAnswer: selectedAnswer,
+    //   imagePath: null,
+    // }
+    // try {
+    //   if (questionImageFile) {
+    //     const questionImagePath = `${uuid()}-${questionImageFile.name}`
+    //     await supabase.storage.from('images').upload(questionImagePath, questionImageFile)
+    //     result.imagePath = questionImagePath
+    //     console.log('Image saved in supabase')
+    //   }
+    //   await supabase.storage.from('quizes').upload(result)
+    // } catch (error) {
+    //   console.log(error)
+    // } finally {
+    //   setIsLoading(false)
+    // }
+  }
 
   return (
     <>
+      {isLoading && <Loader />}
+
       <ModalNewGuess
         modalNewGuessActive={modalNewGuessActive}
         setModalNewGuessActive={setModalNewGuessActive}
+        savedQuestions={savedQuestions}
+        gameTitle={gameTitle}
+        setGameTitle={setGameTitle}
+        createNewGuessHandler={createNewGuessHandler}
+        modalValidError={modalValidError}
+        setModalValidError={setModalValidError}
       />
 
       <Header pageTitle="Создание квиза">
         <div className={styles.headerButtons}>
-          <Button onClick={func} type="button" text="Сохранить игру" size="small" bgcolor="green" />
+          <Button
+            onClick={newGuessModalHandler}
+            type="button"
+            text="Сохранить игру"
+            size="small"
+            bgcolor="green"
+          />
           <Button type="button" text="Профиль" size="small" bgcolor="white" />
         </div>
       </Header>

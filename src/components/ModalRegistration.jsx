@@ -5,7 +5,7 @@ import Button from './UI/Buttons/Button'
 import Loader from './UI/Loader/Loader'
 import Modal from './UI/Modal/Modal'
 
-const ModalSignUp = ({ modalSignUpActive, setModalSignUpActive }) => {
+const ModalRegistration = ({ modalSignUpActive, setModalSignUpActive }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -93,4 +93,4 @@ const ModalSignUp = ({ modalSignUpActive, setModalSignUpActive }) => {
   )
 }
 
-export default ModalSignUp
+export default ModalRegistration

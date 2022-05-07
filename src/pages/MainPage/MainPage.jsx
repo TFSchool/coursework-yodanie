@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import { useState } from 'react'
 import ModalSignIn from '../../components/ModalSignIn'
-import ModalSignUp from '../../components/ModalSignUp.jsx'
+import ModalSignUp from './../../components/ModalSignUp'
 import Nav from '../../components/Nav/Nav'
 import MyLink from '../../components/UI/Buttons/MyLink'
 import styles from './MainPage.module.css'

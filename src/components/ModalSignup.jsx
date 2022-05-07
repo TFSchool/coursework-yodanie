@@ -5,7 +5,7 @@ import Button from './UI/Buttons/Button'
 import Loader from './UI/Loader/Loader'
 import Modal from './UI/Modal/Modal'
 
-const ModalSignUp = ({ modalSignUpActive, setModalSignUpActive }) => {
+export const ModalSignUp = ({ modalSignUpActive, setModalSignUpActive }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -30,7 +30,7 @@ const ModalSignUp = ({ modalSignUpActive, setModalSignUpActive }) => {
 
     try {
       setIsLoading(true)
-      const { user, error } = await supabase.auth.signUp({
+      const { error } = await supabase.auth.signUp({
         email: email,
         password: password,
       })

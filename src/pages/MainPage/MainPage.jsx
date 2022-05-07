@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import styles from './MainPage.module.css'
 import QuestionMark from './questionMark.png'
@@ -6,31 +6,46 @@ import quoteImage from './quote.png'
 import MyLink from '../../components/UI/Buttons/MyLink'
 import Button from '../../components/UI/Buttons/Button'
 import cn from 'classnames'
+import { supabase } from '../../supabaseClient'
 
-import ModalAuth from '../../components/ModalAuth'
-import ModalSignup from '../../components/ModalSignup'
+import ModalSignIn from '../../components/ModalSignIn'
+import ModalSignUp from '../../components/ModalSignUp'
+import Nav from '../../components/Nav/Nav'
 
 const MainPage = () => {
   const [pincode, setPincode] = useState('')
-  const [modalAuthActive, setModalAuthActive] = useState(false)
-  const [modalSignupActive, setModalSignupActive] = useState(false)
-
+  const [modalSignInActive, setModalSignInActive] = useState(false)
+  const [modalSignUpActive, setModalSignUpActive] = useState(false)
   const pincodeHandler = e => setPincode(e.target.value)
-  const authModalHandler = () => setModalAuthActive(true)
-  const signupModalHandler = () => setModalSignupActive(true)
+  const signInHandler = () => setModalSignInActive(true)
+  const signUpHandler = () => setModalSignUpActive(true)
+  const [session, setSession] = useState(null)
+
+  useEffect(() => {
+    setSession(supabase.auth.session())
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+  }, [session])
+
+  console.log(session)
 
   return (
     <>
-      <ModalAuth modalAuthActive={modalAuthActive} setModalAuthActive={setModalAuthActive} />
-      <ModalSignup
-        modalSignupActive={modalSignupActive}
-        setModalSignupActive={setModalSignupActive}
+      <ModalSignIn
+        modalSignInActive={modalSignInActive}
+        setModalSignInActive={setModalSignInActive}
+      />
+      <ModalSignUp
+        modalSignUpActive={modalSignUpActive}
+        setModalSignUpActive={setModalSignUpActive}
       />
 
       <main
         className={cn(
           styles.mainPage,
-          (modalAuthActive || modalSignupActive) && styles.mainPageBlurred
+          (modalSignInActive || modalSignUpActive) && styles.mainPageBlurred
         )}
       >
         <div className={cn(styles.circle, styles.circleYellow)}></div>
@@ -38,38 +53,12 @@ const MainPage = () => {
           <img className={styles.questionMark} src={QuestionMark} alt="question mark" />
         </div>
 
-        <nav className={styles.nav}>
-          <Button
-            onClick={authModalHandler}
-            text="Войти"
-            bgcolor="violet"
-            size="small"
-            customStyle="spacing"
-          />
-          <Button
-            onClick={signupModalHandler}
-            text="Регистрация"
-            bgcolor="violet"
-            size="small"
-            customStyle="spacing"
-          />
-          <MyLink
-            to="magic-link"
-            bgcolor="violet"
-            size="small"
-            text="MagicLink"
-            customStyle="spacing"
-          />
-          <MyLink
-            to="create-guess"
-            bgcolor="green"
-            size="small"
-            text="Создать квиз"
-            customStyle="spacing"
-          />
-
-          <MyLink to="profile" bgcolor="yellow" size="small" text="Профиль" customStyle="spacing" />
-        </nav>
+        <Nav
+          session={session}
+          currentPage="main"
+          signInHandler={signInHandler}
+          signUpHandler={signUpHandler}
+        />
 
         <div className={styles.menu}>
           <img

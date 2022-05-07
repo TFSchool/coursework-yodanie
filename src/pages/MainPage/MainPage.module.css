@@ -87,6 +87,8 @@
   height: 50px;
   margin-bottom: 20px;
 
+  border: 2px dashed rgba(0, 0, 0, 0.5);
+
   background-color: white;
   color: black;
   font-weight: 700;
@@ -117,14 +119,3 @@ input[type='number']:focus {
   -moz-appearance: textfield;
 }
 /* Убирает стрелочки сбоку*/
-
-.nav {
-  display: flex;
-  flex-wrap: wrap;
-}
-.navlink {
-  margin-right: 15px;
-}
-.navlink:last-child {
-  margin-right: 0;
-}

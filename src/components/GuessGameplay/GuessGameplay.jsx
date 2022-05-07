@@ -14,23 +14,25 @@ const GuessGameplay = ({ gameData }) => {
   const questionData = gameData[0]
 
   return (
-    <div className={styles.guessGameplay}>
-      <h1 className={styles.questionTitle}>{questionData.questionTitle}</h1>
-      <div className={styles.guessImageWrapper}>
-        <img
-          className={styles.guessPicture}
-          src={questionData.imagePath}
-          alt={questionData.questionTitle}
+    <>
+      <div className={styles.guessGameplay}>
+        <h1 className={styles.questionTitle}>{questionData.questionTitle}</h1>
+        <div className={styles.guessImageWrapper}>
+          <img
+            className={styles.guessPicture}
+            src={questionData.imagePath}
+            alt={questionData.questionTitle}
+          />
+        </div>
+
+        <Answers
+          gameplay={true}
+          handleSelect={handleSelect}
+          questionData={questionData}
+          selectedAnswer={selectedAnswer}
         />
       </div>
-
-      <Answers
-        gameplay={true}
-        handleSelect={handleSelect}
-        questionData={questionData}
-        selectedAnswer={selectedAnswer}
-      />
-    </div>
+    </>
   )
 }
 

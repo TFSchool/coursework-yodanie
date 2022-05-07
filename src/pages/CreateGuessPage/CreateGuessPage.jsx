@@ -8,7 +8,9 @@ import cn from 'classnames'
 import ModalNewGuess from '../../components/ModalNewGuess'
 import { v4 as uuid } from 'uuid'
 import Loader from '../../components/UI/Loader/Loader'
-import { isTitleValid } from '../../utils/validators'
+import MyLink from '../../components/UI/Buttons/MyLink'
+import Nav from '../../components/Nav/Nav'
+import { supabase } from '../../supabaseClient'
 
 const CreateGuessPage = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -16,6 +18,16 @@ const CreateGuessPage = () => {
   const [initLoadCompleted, setInitLoadCompleted] = useState(false)
   const [indexOfDeletedQuestion, setIndexOfDeletedQuestion] = useState(null)
   const [gameTitle, setGameTitle] = useState('')
+
+  const [session, setSession] = useState(null)
+
+  useEffect(() => {
+    setSession(supabase.auth.session())
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+  }, [session])
 
   // Modals
   const [modalNewGuessActive, setModalNewGuessActive] = useState(false)
@@ -82,16 +94,7 @@ const CreateGuessPage = () => {
       />
 
       <Header pageTitle="Создание квиза">
-        <div className={styles.headerButtons}>
-          <Button
-            onClick={newGuessModalHandler}
-            type="button"
-            text="Сохранить игру"
-            size="small"
-            bgcolor="green"
-          />
-          <Button type="button" text="Профиль" size="small" bgcolor="white" />
-        </div>
+        <Nav session={session} currentPage="create-guess" />
       </Header>
       <main className={cn(styles.main, modalNewGuessActive && styles.blurred)}>
         <QuestionsList

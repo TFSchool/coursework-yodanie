@@ -4,6 +4,7 @@ import GuessGameplay from '../../components/GuessGameplay/GuessGameplay'
 import { supabase } from '../../supabaseClient'
 import { useParams } from 'react-router-dom'
 import Loader from '../../components/UI/Loader/Loader'
+import GameOver from '../../components/GuessGameplay/GameOver'
 
 const GameplayPage = () => {
   const [gameData, setGameData] = useState({})
@@ -13,9 +14,9 @@ const GameplayPage = () => {
 
   const { gameId } = useParams()
 
-  useEffect(() => {
-    fetchGameData()
-  }, [])
+  // useEffect(() => {
+  //   fetchGameData()
+  // }, [])
 
   const fetchGameData = async () => {
     setIsLoading(true)
@@ -33,7 +34,8 @@ const GameplayPage = () => {
 
   return (
     <>
-      {fetchError && <h2>{fetchError}</h2>}
+      {/* <GameOver /> */}
+      {/* {fetchError && <h2>{fetchError}</h2>}
       {!fetchError && isLoading && <Loader />}
       {Object.keys(gameData).length && (
         <>
@@ -42,7 +44,11 @@ const GameplayPage = () => {
           </Header>
           <GuessGameplay gameData={gameData.gameContent.questions} />
         </>
-      )}
+      )} */}
+      <Header pageTitle={'sdfsdf'}>
+        <div className="questionsNumber">{`1/${questionsNumber}`}</div>
+      </Header>
+      <GameOver />
     </>
   )
 }

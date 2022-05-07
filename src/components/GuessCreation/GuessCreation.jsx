@@ -42,7 +42,8 @@ const GuessCreation = ({
     setQuestionImagePreview(null)
   }
 
-  // console.log(supabase.auth.user())
+  const user = supabase.auth.user()
+  console.log(user)
 
   useEffect(() => {
     clearUserMessages()
@@ -143,7 +144,7 @@ const GuessCreation = ({
         />
 
         <div className={styles.actionButtons}>
-          <Button type="submit" text="Сохранить вопрос" size="small" bgcolor="yellow" />
+          <Button type="submit" text="Сохранить вопрос" size="small" bgcolor="violet" />
         </div>
 
         {questionImagePreview ? (

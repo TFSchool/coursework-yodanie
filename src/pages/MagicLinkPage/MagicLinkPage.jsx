@@ -7,8 +7,6 @@ import Button from '../../components/UI/Buttons/Button'
 const MagicLinkPage = () => {
   const [email, setEmail] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
-  const [error, setError] = useState(null)
 
   const emailInputHandler = e => setEmail(e.target.value)
 

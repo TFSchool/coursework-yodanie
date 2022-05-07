@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { supabase } from '../supabaseClient'
 import { validateSignUp } from '../utils/validators'
 import Button from './UI/Buttons/Button'
 import Loader from './UI/Loader/Loader'
 import Modal from './UI/Modal/Modal'
 
-export const ModalSignUp = ({ modalSignUpActive, setModalSignUpActive }) => {
+const ModalSignUp = ({ modalSignUpActive, setModalSignUpActive }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')

@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import Button from './UI/Buttons/Button'
-import Modal from './UI/Modal/Modal'
 import { supabase } from '../supabaseClient'
-import Loader from './UI/Loader/Loader'
 import { validateSignUp } from '../utils/validators'
+import Button from './UI/Buttons/Button'
+import Loader from './UI/Loader/Loader'
+import Modal from './UI/Modal/Modal'
 
 const ModalSignUp = ({ modalSignUpActive, setModalSignUpActive }) => {
   const [isLoading, setIsLoading] = useState(false)
@@ -38,8 +38,6 @@ const ModalSignUp = ({ modalSignUpActive, setModalSignUpActive }) => {
         setErrorMessage(error)
       }
       setSuccessMessage('Регистрация прошла успешно! Проверьте почту для подтверждения.')
-    } catch (error) {
-      alert(error.error_description || error.message)
     } finally {
       setIsLoading(false)
     }

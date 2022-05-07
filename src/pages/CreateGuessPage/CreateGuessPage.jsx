@@ -1,16 +1,15 @@
-import { useEffect, useState } from 'react'
-import Header from '../../components/Header/Header'
-import styles from './CreateGuessPage.module.css'
-import QuestionsList from '../../components/QuestionsList/QuestionsList'
-import GuessCreation from '../../components/GuessCreation/GuessCreation'
-import Button from '../../components/UI/Buttons/Button'
 import cn from 'classnames'
+import { useEffect, useState } from 'react'
+import GuessCreation from '../../components/GuessCreation/GuessCreation'
+import Header from '../../components/Header/Header'
 import ModalNewGuess from '../../components/ModalNewGuess'
-import { v4 as uuid } from 'uuid'
-import Loader from '../../components/UI/Loader/Loader'
-import MyLink from '../../components/UI/Buttons/MyLink'
 import Nav from '../../components/Nav/Nav'
+import QuestionsList from '../../components/QuestionsList/QuestionsList'
+import Loader from '../../components/UI/Loader/Loader'
 import { supabase } from '../../supabaseClient'
+import styles from './CreateGuessPage.module.css'
+import { useAuth } from '../../contexts/AuthContext'
+import { useNavigate } from 'react-router-dom'
 
 const CreateGuessPage = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -18,16 +17,6 @@ const CreateGuessPage = () => {
   const [initLoadCompleted, setInitLoadCompleted] = useState(false)
   const [indexOfDeletedQuestion, setIndexOfDeletedQuestion] = useState(null)
   const [gameTitle, setGameTitle] = useState('')
-
-  const [session, setSession] = useState(null)
-
-  useEffect(() => {
-    setSession(supabase.auth.session())
-
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session)
-    })
-  }, [session])
 
   // Modals
   const [modalNewGuessActive, setModalNewGuessActive] = useState(false)
@@ -42,8 +31,6 @@ const CreateGuessPage = () => {
     }
     setInitLoadCompleted(true)
   }, [])
-
-  const newGuessModalHandler = () => setModalNewGuessActive(true)
 
   const createNewGuessHandler = async e => {
     e.preventDefault()
@@ -94,7 +81,7 @@ const CreateGuessPage = () => {
       />
 
       <Header pageTitle="Создание квиза">
-        <Nav session={session} currentPage="create-guess" />
+        <Nav currentPage="create-guess" />
       </Header>
       <main className={cn(styles.main, modalNewGuessActive && styles.blurred)}>
         <QuestionsList

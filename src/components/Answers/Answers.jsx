@@ -1,7 +1,6 @@
-import React from 'react'
+import cn from 'classnames'
 import styles from './Answers.module.css'
 import { ReactComponent as CheckMark } from './checkMark.svg'
-import cn from 'classnames'
 
 const ANSWER_A = 'answerA'
 const ANSWER_B = 'answerB'

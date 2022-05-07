@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import Modal from './UI/Modal/Modal'
-import Button from './UI/Buttons/Button'
-import { validateSignIn } from '../utils/validators'
 import { supabase } from '../supabaseClient'
+import { validateSignIn } from '../utils/validators'
+import Button from './UI/Buttons/Button'
 import Loader from './UI/Loader/Loader'
+import Modal from './UI/Modal/Modal'
 
 const ModalSignIn = ({ modalSignInActive, setModalSignInActive }) => {
   const [isLoading, setIsLoading] = useState(false)

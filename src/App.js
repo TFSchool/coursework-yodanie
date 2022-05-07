@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react'
-import { supabase } from './supabaseClient'
+import { useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Layout from './components/Layout'
 import CreateGuessPage from './pages/CreateGuessPage/CreateGuessPage'
@@ -29,7 +28,7 @@ function App() {
           <Route path="guess-play/:gameId" element={<GameplayPage />} />
           <Route path="create-guess" element={<CreateGuessPage />} />
           <Route path="create-guess/question/:id" element={<CreateGuessPage />} />
-          <Route path="profile" element={<ProfilePage />} />
+          <Route path="profile/:id" element={<ProfilePage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
@@ -38,12 +37,3 @@ function App() {
 }
 
 export default App
-
-/* 
-          <Route path="guess-play" element={<GameplayPage />} />
-          <Route path="guess-play" element={<MainPage />} />
-
-
-<Route path="auth" element={<AuthModal />} />
-          <Route path="signup" element={<SignupModal />} />
-*/

@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react'
-import styles from './QuestionsListItem.module.css'
-import ImagePlaceHolder from './picture-icon.svg'
 import cn from 'classnames'
+import ImagePlaceHolder from './picture-icon.svg'
+import styles from './QuestionsListItem.module.css'
 
 const QuestionsListItem = ({
   id,

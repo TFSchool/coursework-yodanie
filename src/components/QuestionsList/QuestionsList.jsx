@@ -1,8 +1,7 @@
-import React from 'react'
+import cn from 'classnames'
+import { NavLink } from 'react-router-dom'
 import QuestionsListItem from '../QuestionsListItem/QuestionsListItem'
 import styles from './QuestionsList.module.css'
-import { NavLink } from 'react-router-dom'
-import cn from 'classnames'
 
 const QuestionsList = ({ savedQuestions, setSavedQuestions, setIndexOfDeletedQuestion }) => {
   return (

@@ -6,7 +6,7 @@ import { useAuth } from '../../contexts/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 
-const Nav = ({ currentPage, signInHandler, signUpHandler }) => {
+const Nav = ({ currentPage, signInHandler, signUpHandler, children }) => {
   const logout = () => supabase.auth.signOut()
 
   const user = supabase.auth.user()
@@ -22,6 +22,7 @@ const Nav = ({ currentPage, signInHandler, signUpHandler }) => {
     <>
       {user ? (
         <nav className={styles.nav}>
+          {children}
           {currentPage === 'main' && (
             <>
               <MyLink

@@ -7,6 +7,7 @@ import { validateError } from '../../utils/validators'
 import Answers from '../Answers/Answers'
 import Button from '../UI/Buttons/Button'
 import styles from './GuessCreation.module.css'
+
 const GuessCreation = ({
   initLoadCompleted,
   savedQuestions,
@@ -90,7 +91,7 @@ const GuessCreation = ({
       [e.target.name]: e.target.value,
     })
   }
-  const handleSelectAnswer = e => {
+  const selectAnswerHandler = e => {
     clearUserMessages()
     e.currentTarget.name === selectedAnswer
       ? setSelectedAnswer(null)
@@ -99,8 +100,6 @@ const GuessCreation = ({
 
   const newQuestionHandler = e => {
     e.preventDefault()
-
-    console.log(questionImageFile)
 
     const error = validateError(questionTitle, answersData, selectedAnswer)
     if (error) {
@@ -112,6 +111,7 @@ const GuessCreation = ({
       answersData,
       correctAnswer: selectedAnswer,
       questionImagePreview,
+      questionImageName: questionImageFile && `${uuid()}-${questionImageFile.name}`,
     }
     if (urlParams.id) {
       newQuestion.id = urlParams.id
@@ -188,7 +188,7 @@ const GuessCreation = ({
         <Answers
           creation={true}
           handleAnswerInput={handleAnswerInput}
-          handleSelectAnswer={handleSelectAnswer}
+          selectAnswerHandler={selectAnswerHandler}
           answersData={answersData}
           selectedAnswer={selectedAnswer}
         />

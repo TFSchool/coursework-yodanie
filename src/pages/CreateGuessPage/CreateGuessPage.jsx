@@ -10,6 +10,11 @@ import { supabase } from '../../supabaseClient'
 import styles from './CreateGuessPage.module.css'
 import { useAuth } from '../../contexts/AuthContext'
 import { useNavigate } from 'react-router-dom'
+import Button from '../../components/UI/Buttons/Button'
+import { v4 as uuid } from 'uuid'
+
+const SUPABASE_IMAGES_STORAGE_URL =
+  'https://cryqluuukumkkiztlbng.supabase.co/storage/v1/object/public/images'
 
 const CreateGuessPage = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -17,10 +22,11 @@ const CreateGuessPage = () => {
   const [initLoadCompleted, setInitLoadCompleted] = useState(false)
   const [indexOfDeletedQuestion, setIndexOfDeletedQuestion] = useState(null)
   const [gameTitle, setGameTitle] = useState('')
-
-  // Modals
   const [modalNewGuessActive, setModalNewGuessActive] = useState(false)
-  const [modalValidError, setModalValidError] = useState(null)
+  const [errorMessage, setErrorMessage] = useState(null)
+  const [successMessage, setSuccessMessage] = useState(null)
+
+  const user = supabase.auth.user()
 
   useEffect(() => {
     if (savedQuestions.length === 0) {
@@ -36,33 +42,63 @@ const CreateGuessPage = () => {
     e.preventDefault()
 
     if (gameTitle.length === 0) {
-      setModalValidError('Введите название')
+      setErrorMessage('Введите название')
+      return
+    }
+    if (savedQuestions.length === 0) {
+      setErrorMessage('Вы должны создать хотя бы один вопрос')
       return
     }
 
-    console.log(savedQuestions)
+    const questionsData = savedQuestions.reduce((acc, question) => {
+      const result = {
+        id: question.id,
+        answersData: question.answersData,
+        correctAnswer: question.correctAnswer,
+        questionTitle: question.questionTitle,
+        imageUrl:
+          question.questionImageName &&
+          `${SUPABASE_IMAGES_STORAGE_URL}/${question.questionImageName}`,
+      }
+      acc.push(result)
+      return acc
+    }, [])
 
-    // setIsLoading(true)
-    // const result = {
-    //   id: uuid(),
-    //   gameTitle,
-    //   answers: [...answersData],
-    //   correctAnswer: selectedAnswer,
-    //   imagePath: null,
-    // }
-    // try {
-    //   if (questionImageFile) {
-    //     const questionImagePath = `${uuid()}-${questionImageFile.name}`
-    //     await supabase.storage.from('images').upload(questionImagePath, questionImageFile)
-    //     result.imagePath = questionImagePath
-    //     console.log('Image saved in supabase')
-    //   }
-    //   await supabase.storage.from('quizes').upload(result)
-    // } catch (error) {
-    //   console.log(error)
-    // } finally {
-    //   setIsLoading(false)
-    // }
+    const gameData = {
+      gameTitle,
+      questions: questionsData,
+      userId: user.id,
+    }
+
+    setIsLoading(true)
+    try {
+      for (const question of savedQuestions) {
+        if (question.questionImageName) {
+          const imgName = question.questionImageName
+          const image64 = await fetch(question.questionImagePreview)
+          const blob = await image64.blob()
+          const imageFile = new File([blob], imgName, { type: 'image' })
+          await supabase.storage.from('images').upload(imgName, imageFile)
+          console.log('Image saved in supabase')
+        }
+      }
+      await supabase.from('games').insert(gameData)
+      console.log('Data inserted in tables')
+    } catch (err) {
+      console.log(err)
+    } finally {
+      localStorage.removeItem('savedQuestions')
+      setSavedQuestions([])
+      setGameTitle('')
+      setSuccessMessage('Вы успешно создали игру!')
+      setIsLoading(false)
+    }
+  }
+
+  const modalNewGuessHandler = () => {
+    setModalNewGuessActive(true)
+    setErrorMessage(null)
+    setSuccessMessage(null)
   }
 
   return (
@@ -72,16 +108,25 @@ const CreateGuessPage = () => {
       <ModalNewGuess
         modalNewGuessActive={modalNewGuessActive}
         setModalNewGuessActive={setModalNewGuessActive}
-        savedQuestions={savedQuestions}
         gameTitle={gameTitle}
         setGameTitle={setGameTitle}
         createNewGuessHandler={createNewGuessHandler}
-        modalValidError={modalValidError}
-        setModalValidError={setModalValidError}
+        errorMessage={errorMessage}
+        setErrorMessage={setErrorMessage}
+        successMessage={successMessage}
       />
 
       <Header pageTitle="Создание квиза">
-        <Nav currentPage="create-guess" />
+        <Nav currentPage="create-guess">
+          <Button
+            onClick={modalNewGuessHandler}
+            text="Сохранить квиз"
+            size="small"
+            customStyle="spacing"
+            bgcolor="green"
+            type="button"
+          />
+        </Nav>
       </Header>
       <main className={cn(styles.main, modalNewGuessActive && styles.blurred)}>
         <QuestionsList

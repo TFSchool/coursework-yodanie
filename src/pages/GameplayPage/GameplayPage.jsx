@@ -7,24 +7,24 @@ import Loader from '../../components/UI/Loader/Loader'
 import GameOver from '../../components/GuessGameplay/GameOver'
 
 const GameplayPage = () => {
-  const [gameData, setGameData] = useState({})
-  const [questionsNumber, setQuestionsNumber] = useState('')
+  const [gameData, setGameData] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [fetchError, setFetchError] = useState(null)
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
 
   const { gameId } = useParams()
 
-  // useEffect(() => {
-  //   fetchGameData()
-  // }, [])
+  const totalQuestions = gameData && gameData.questions.length
+
+  useEffect(() => {
+    fetchGameData()
+  }, [gameId])
 
   const fetchGameData = async () => {
     setIsLoading(true)
     try {
       const { data } = await supabase.from('games').select().eq('id', gameId)
-      if (data.length === 0) setFetchError('No data bro')
       setGameData(data[0])
-      setQuestionsNumber(data[0].gameContent.questions.length)
     } catch (error) {
       console.log(`Ошибочка... ${error}`)
     } finally {
@@ -34,21 +34,18 @@ const GameplayPage = () => {
 
   return (
     <>
-      {/* <GameOver /> */}
-      {/* {fetchError && <h2>{fetchError}</h2>}
-      {!fetchError && isLoading && <Loader />}
-      {Object.keys(gameData).length && (
+      {isLoading && <Loader />}
+      {gameData && (
         <>
           <Header pageTitle={gameData.gameTitle}>
-            <div className="questionsNumber">{`1/${questionsNumber}`}</div>
+            <div className="questionsNumber">{`${currentQuestionIndex + 1}/${totalQuestions}`}</div>
           </Header>
-          <GuessGameplay gameData={gameData.gameContent.questions} />
+          <GuessGameplay gameData={gameData} />
         </>
-      )} */}
-      <Header pageTitle={'sdfsdf'}>
-        <div className="questionsNumber">{`1/${questionsNumber}`}</div>
-      </Header>
-      <GameOver />
+      )}
+
+      {/* {!fetchError && isLoading && <Loader />} */}
+      {/* <GameOver /> */}
     </>
   )
 }

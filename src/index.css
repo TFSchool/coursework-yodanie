@@ -38,6 +38,8 @@ body {
 input,
 button,
 textarea {
+  color: inherit;
+  font-weight: inherit;
   font-family: inherit;
   font-size: inherit;
   background: inherit;

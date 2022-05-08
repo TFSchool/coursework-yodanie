@@ -12,7 +12,7 @@ const Answers = ({
   gameplay,
   creation,
   handleAnswerInput,
-  handleSelectAnswer,
+  selectAnswerHandler,
   answersData,
   selectedAnswer,
   questionData,
@@ -40,7 +40,7 @@ const Answers = ({
               name={ANSWER_A}
               className={styles.answerButton}
               type="button"
-              onClick={handleSelectAnswer}
+              onClick={selectAnswerHandler}
             >
               <CheckMark className={selectionClassName(ANSWER_A)} />
             </button>
@@ -60,7 +60,7 @@ const Answers = ({
               name={ANSWER_B}
               className={styles.answerButton}
               type="button"
-              onClick={handleSelectAnswer}
+              onClick={selectAnswerHandler}
             >
               <CheckMark className={selectionClassName(ANSWER_B)} />
             </button>
@@ -80,7 +80,7 @@ const Answers = ({
               name={ANSWER_C}
               className={styles.answerButton}
               type="button"
-              onClick={handleSelectAnswer}
+              onClick={selectAnswerHandler}
             >
               <CheckMark className={selectionClassName(ANSWER_C)} />
             </button>
@@ -100,7 +100,7 @@ const Answers = ({
               name={ANSWER_D}
               className={styles.answerButton}
               type="button"
-              onClick={handleSelectAnswer}
+              onClick={selectAnswerHandler}
             >
               <CheckMark className={selectionClassName(ANSWER_D)} />
             </button>
@@ -112,12 +112,12 @@ const Answers = ({
         <div className={styles.guessAnswers}>
           <div className={cn(styles.answer, styles[ANSWER_A])}>
             <div className={styles.answerLabel}>a</div>
-            <div className={styles.answerOption}>{questionData.answers[0]}</div>
+            <div className={styles.answerOption}>{questionData.answersData[ANSWER_A]}</div>
             <button
               name={ANSWER_A}
               className={styles.answerButton}
               type="button"
-              onClick={handleSelectAnswer}
+              onClick={selectAnswerHandler}
             >
               <CheckMark className={selectionClassName(ANSWER_A)} />
             </button>
@@ -125,12 +125,12 @@ const Answers = ({
 
           <div className={cn(styles.answer, styles[ANSWER_B])}>
             <div className={styles.answerLabel}>b</div>
-            <div className={styles.answerOption}>{questionData.answers[1]}</div>
+            <div className={styles.answerOption}>{questionData.answersData[ANSWER_B]}</div>
             <button
               name={ANSWER_B}
               className={styles.answerButton}
               type="button"
-              onClick={handleSelectAnswer}
+              onClick={selectAnswerHandler}
             >
               <CheckMark className={selectionClassName(ANSWER_B)} />
             </button>
@@ -138,12 +138,12 @@ const Answers = ({
 
           <div className={cn(styles.answer, styles[ANSWER_C])}>
             <div className={styles.answerLabel}>c</div>
-            <div className={styles.answerOption}>{questionData.answers[2]}</div>
+            <div className={styles.answerOption}>{questionData.answersData[ANSWER_C]}</div>
             <button
               name={ANSWER_C}
               className={styles.answerButton}
               type="button"
-              onClick={handleSelectAnswer}
+              onClick={selectAnswerHandler}
             >
               <CheckMark className={selectionClassName(ANSWER_C)} />
             </button>
@@ -151,12 +151,12 @@ const Answers = ({
 
           <div className={cn(styles.answer, styles[ANSWER_D])}>
             <div className={styles.answerLabel}>d</div>
-            <div className={styles.answerOption}>{questionData.answers[3]}</div>
+            <div className={styles.answerOption}>{questionData.answersData[ANSWER_D]}</div>
             <button
               name={ANSWER_D}
               className={styles.answerButton}
               type="button"
-              onClick={handleSelectAnswer}
+              onClick={selectAnswerHandler}
             >
               <CheckMark className={selectionClassName(ANSWER_D)} />
             </button>

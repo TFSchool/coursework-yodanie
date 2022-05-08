@@ -2,32 +2,63 @@ import { useState } from 'react'
 import Answers from '../Answers/Answers'
 import cn from 'classnames'
 import styles from './GuessGameplay.module.css'
+import Button from '../UI/Buttons/Button'
+import Surrender from './Surrender'
 
 const GuessGameplay = ({ gameData }) => {
-  const [selectedAnswer, setSelectedAnswer] = useState(false)
+  const [selectedAnswer, setSelectedAnswer] = useState(null)
+  const [isSurrender, setIsSurrender] = useState(false)
 
-  const handleSelect = e => {
+  const selectAnswerHandler = e => {
     e.preventDefault()
-    setSelectedAnswer(e.currentTarget.name)
+    e.currentTarget.name === selectedAnswer
+      ? setSelectedAnswer(null)
+      : setSelectedAnswer(e.currentTarget.name)
   }
 
-  const questionData = gameData[0]
+  const surrenderHandler = () => {
+    setIsSurrender(true)
+    setTimeout(() => {
+      setIsSurrender(false)
+    }, 5000)
+  }
+
+  const questionData = gameData.questions[0]
 
   return (
     <>
+      {isSurrender && <Surrender />}
+
       <div className={styles.guessGameplay}>
         <h1 className={styles.questionTitle}>{questionData.questionTitle}</h1>
         <div className={styles.guessImageWrapper}>
           <img
             className={styles.guessPicture}
-            src={questionData.imagePath}
+            src={questionData.imageUrl}
             alt={questionData.questionTitle}
+          />
+        </div>
+
+        <div className={styles.actions}>
+          <Button
+            text="Сдаться"
+            onClick={surrenderHandler}
+            size="small"
+            bgcolor="white"
+            customStyle="spacing"
+          />
+          <Button
+            text="Ответить"
+            onClick={surrenderHandler}
+            size="small"
+            bgcolor="green"
+            customStyle="spacing"
           />
         </div>
 
         <Answers
           gameplay={true}
-          handleSelect={handleSelect}
+          selectAnswerHandler={selectAnswerHandler}
           questionData={questionData}
           selectedAnswer={selectedAnswer}
         />

@@ -16,8 +16,8 @@
 .circle {
   position: fixed;
 
-  width: 416px;
-  height: 416px;
+  width: 350px;
+  height: 350px;
   border-radius: 50%;
 }
 .circlePink {
@@ -39,6 +39,6 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 220px;
-  height: 270px;
+  width: 180px;
+  height: 220px;
 }

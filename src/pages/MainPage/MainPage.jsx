@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import ModalSignIn from '../../components/ModalSignIn'
 import ModalRegistration from '../../components/ModalRegistration'
 import Nav from '../../components/Nav/Nav'

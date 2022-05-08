@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { supabase } from '../supabaseClient'
 import { validateSignIn } from '../utils/validators'
 import Button from './UI/Buttons/Button'

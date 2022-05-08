@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Layout from './components/Layout'
 import CreateGuessPage from './pages/CreateGuessPage/CreateGuessPage'
@@ -9,16 +8,6 @@ import NotFoundPage from './pages/NotFoundPage/NotFoundPage'
 import ProfilePage from './pages/ProfilePage/ProfilePage'
 
 function App() {
-  const [session, setSession] = useState(null)
-
-  // useEffect(() => {
-  //   setSession(supabase.auth.session())
-
-  //   supabase.auth.onAuthStateChange((_event, session) => {
-  //     setSession(session)
-  //   })
-  // }, [])
-
   return (
     <BrowserRouter>
       <Routes>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { supabase } from '../supabaseClient'
 import { validateSignUp } from '../utils/validators'
 import Button from './UI/Buttons/Button'
@@ -16,8 +16,6 @@ const ModalRegistration = ({ modalSignUpActive, setModalSignUpActive }) => {
   const emailHandler = e => (setEmail(e.target.value), setErrorMessage(null))
   const passwordHandler = e => (setPassword(e.target.value), setErrorMessage(null))
   const passwordConfirmHandler = e => (setPasswordConfirm(e.target.value), setErrorMessage(null))
-
-  const clearInputs = () => (setEmail(''), setPassword(''), setPasswordConfirm(''))
 
   const signUpHandler = async e => {
     e.preventDefault()

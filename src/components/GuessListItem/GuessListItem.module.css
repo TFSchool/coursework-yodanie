@@ -1,0 +1,90 @@
+.guessListItem {
+  position: relative;
+  width: 100%;
+  max-width: 650px;
+  height: 160px;
+  margin-bottom: 40px;
+  padding: 30px;
+
+  background-color: var(--color-yellow);
+  border: 5px solid var(--color-violetDark);
+  border-radius: 10px;
+  color: var(--color-violetDark);
+  font-size: 24px;
+}
+
+.guessListItem:last-child {
+  margin-bottom: 0;
+}
+
+.guessTitle {
+  margin-bottom: 40px;
+
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.counter {
+  font-size: 32px;
+  font-weight: 700;
+}
+.copy {
+  display: flex;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+.copyText {
+  margin-right: 5px;
+  transition: all 0.2s linear;
+}
+.copyIcon {
+  width: 35px;
+  height: 35px;
+}
+.copyIcon * {
+  transition: all 0.2s linear;
+  fill: var(--color-violetDark);
+}
+.copy:hover {
+  color: black;
+}
+
+.copy:hover .copyIcon * {
+  fill: black;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+  fill: var(--color-violetDark);
+}
+.icon * {
+  transition: all 0.2s linear;
+  fill: var(--color-violetDark);
+}
+
+.icon:hover * {
+  fill: black;
+}
+
+.deleteButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 10%;
+  right: 5%;
+}
+
+.modalButtons {
+  display: flex;
+  justify-content: space-evenly;
+}

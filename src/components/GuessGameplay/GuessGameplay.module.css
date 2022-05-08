@@ -39,3 +39,8 @@
   object-fit: contain;
   object-position: center;
 }
+
+.actions {
+  margin-left: auto;
+  display: flex;
+}

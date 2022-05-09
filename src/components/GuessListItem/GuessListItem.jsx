@@ -1,7 +1,7 @@
 import styles from './GuessListItem.module.css'
 import { useState } from 'react'
 import { getDeclension } from '../../utils/getWordDeclension'
-import { ReactComponent as CopyIcon } from '../../assets/icons/Vector.svg'
+import { ReactComponent as CopyIcon } from '../../assets/icons/copy2.svg'
 import { ReactComponent as DeleteIcon } from '../../assets/icons/delete-icon.svg'
 import { supabase } from '../../supabaseClient'
 import Modal from '../UI/Modal/Modal'

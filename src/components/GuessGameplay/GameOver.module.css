@@ -1,23 +1,26 @@
-.main {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .gameover {
+  height: 90vh;
+  padding: 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin: auto;
+  justify-content: space-around;
+
+  transition: all 0.2s linear;
+}
+
+.blurred {
+  filter: blur(10px);
 }
 
 .star {
   background: url(./Star.svg) center no-repeat;
   background-size: contain;
   height: 400px;
-  margin-bottom: 50px;
+}
+.starWin {
+  background: url(./Star2.svg) center no-repeat;
 }
 
 .super {
@@ -31,7 +34,6 @@
 
 .text {
   font-size: 32px;
-  margin-bottom: 100px;
 }
 
 .nav {

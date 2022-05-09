@@ -100,6 +100,7 @@ const GuessCreation = ({
 
   const newQuestionHandler = e => {
     e.preventDefault()
+
     const trimmedTitle = questionTitle.trim()
     const trimmedAnswerValues = Object.values(answersData).map(a => a.trim())
     const trimmedAnswers = {
@@ -120,7 +121,7 @@ const GuessCreation = ({
       answersData: trimmedAnswers,
       correctAnswer: selectedAnswer,
       questionImagePreview,
-      questionImageName: questionImageFile && `${uuid()}-${questionImageFile.name}`,
+      questionImageName: questionImagePreview && `${uuid()}-${questionImageFile.name}`,
     }
     if (urlParams.id) {
       newQuestion.id = urlParams.id

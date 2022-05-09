@@ -6,16 +6,15 @@ import { useAuth } from '../../contexts/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 
-const Nav = ({ currentPage, signInHandler, signUpHandler, children }) => {
+const Nav = ({ currentPage, signInHandler, registrationHandler, children }) => {
   const logout = () => supabase.auth.signOut()
 
   const user = supabase.auth.user()
-
   const navigate = useNavigate()
   const { session } = useAuth()
 
   useEffect(() => {
-    if (user === null) navigate('/')
+    if (user === null && currentPage !== 'gameplay') navigate('/')
   }, [session])
 
   return (
@@ -24,6 +23,24 @@ const Nav = ({ currentPage, signInHandler, signUpHandler, children }) => {
         <nav className={styles.nav}>
           {children}
           {currentPage === 'main' && (
+            <>
+              <MyLink
+                to="/create-guess"
+                bgcolor="green"
+                size="small"
+                text="Создать квиз"
+                customStyle="spacing"
+              />
+              <MyLink
+                to={`/profile/${user.id}`}
+                bgcolor="yellow"
+                size="small"
+                text="Профиль"
+                customStyle="spacing"
+              />
+            </>
+          )}
+          {currentPage === 'gameplay' && (
             <>
               <MyLink
                 to="/create-guess"
@@ -50,6 +67,13 @@ const Nav = ({ currentPage, signInHandler, signUpHandler, children }) => {
                 text="Создать квиз"
                 customStyle="spacing"
               />
+              <Button
+                bgcolor="white"
+                customStyle="spacing"
+                size="small"
+                text="Выход"
+                onClick={logout}
+              />
             </>
           )}
           {currentPage === 'create-guess' && (
@@ -63,14 +87,6 @@ const Nav = ({ currentPage, signInHandler, signUpHandler, children }) => {
               />
             </>
           )}
-
-          <Button
-            bgcolor="white"
-            customStyle="spacing"
-            size="small"
-            text="Выход"
-            onClick={logout}
-          />
         </nav>
       ) : (
         <nav className={styles.nav}>
@@ -82,7 +98,7 @@ const Nav = ({ currentPage, signInHandler, signUpHandler, children }) => {
             customStyle="spacing"
           />
           <Button
-            onClick={signUpHandler}
+            onClick={registrationHandler}
             text="Регистрация"
             bgcolor="violet"
             size="small"

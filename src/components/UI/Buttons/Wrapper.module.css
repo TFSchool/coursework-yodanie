@@ -2,7 +2,6 @@
 
 /* Common styles */
 .wrapper {
-  margin: 3px 0;
   border-radius: 5px;
   background-color: var(--color-violetDark);
 }
@@ -90,4 +89,8 @@
 }
 .spacing:last-child {
   margin-right: 0;
+}
+
+.margin-left {
+  margin-left: auto;
 }

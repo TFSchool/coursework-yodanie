@@ -5,7 +5,7 @@ import Button from './UI/Buttons/Button'
 import Loader from './UI/Loader/Loader'
 import Modal from './UI/Modal/Modal'
 
-const ModalRegistration = ({ modalSignUpActive, setModalSignUpActive }) => {
+const ModalRegistration = ({ modalRegistration, setModalRegistration }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -26,7 +26,7 @@ const ModalRegistration = ({ modalSignUpActive, setModalSignUpActive }) => {
     setErrorMessage(null)
   }
 
-  const signUpHandler = async e => {
+  const registrationHandler = async e => {
     e.preventDefault()
 
     const validationError = validateSignUp(email, password, passwordConfirm)
@@ -55,9 +55,9 @@ const ModalRegistration = ({ modalSignUpActive, setModalSignUpActive }) => {
       {isLoading && <Loader />}
 
       <Modal
-        submitHandler={signUpHandler}
-        modalActive={modalSignUpActive}
-        setModalActive={setModalSignUpActive}
+        submitHandler={registrationHandler}
+        modalActive={modalRegistration}
+        setModalActive={setModalRegistration}
         title="Регистрация"
         design="yellow"
         errorMessage={errorMessage}

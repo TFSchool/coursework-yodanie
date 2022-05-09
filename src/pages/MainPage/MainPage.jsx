@@ -14,17 +14,17 @@ import { useNavigate } from 'react-router-dom'
 const UUID_LENGTH = 36
 
 const MainPage = () => {
+  const [modalSignInActive, setModalSignInActive] = useState(false)
+  const [modalRegistration, setModalRegistration] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [pincode, setPincode] = useState('')
-  const [modalSignInActive, setModalSignInActive] = useState(false)
-  const [modalSignUpActive, setModalSignUpActive] = useState(false)
   const [errorMessage, setErrorMessage] = useState(null)
   const pincodeHandler = e => {
     setPincode(e.target.value.trim())
     setErrorMessage(null)
   }
   const signInHandler = () => setModalSignInActive(true)
-  const signUpHandler = () => setModalSignUpActive(true)
+  const registrationHandler = () => setModalRegistration(true)
 
   const navigate = useNavigate()
 
@@ -58,14 +58,14 @@ const MainPage = () => {
         setModalSignInActive={setModalSignInActive}
       />
       <ModalRegistration
-        modalSignUpActive={modalSignUpActive}
-        setModalSignUpActive={setModalSignUpActive}
+        modalRegistration={modalRegistration}
+        setModalRegistration={setModalRegistration}
       />
 
       <main
         className={cn(
           styles.mainPage,
-          (modalSignInActive || modalSignUpActive) && styles.mainPageBlurred
+          (modalSignInActive || modalRegistration) && styles.mainPageBlurred
         )}
       >
         <div className={cn(styles.circle, styles.circleYellow)}></div>
@@ -73,7 +73,11 @@ const MainPage = () => {
           <img className={styles.questionMark} src={QuestionMark} alt="question mark" />
         </div>
 
-        <Nav currentPage="main" signInHandler={signInHandler} signUpHandler={signUpHandler} />
+        <Nav
+          currentPage="main"
+          signInHandler={signInHandler}
+          registrationHandler={registrationHandler}
+        />
 
         <div className={styles.menu}>
           <img

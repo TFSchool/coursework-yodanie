@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import ImagePlaceHolder from './picture-icon.svg'
+import ImagePlaceHolder from '../../assets/icons/picture3.svg'
 import styles from './QuestionsListItem.module.css'
 
 const QuestionsListItem = ({

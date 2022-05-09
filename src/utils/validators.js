@@ -1,8 +1,6 @@
 export const isTitleValid = title => title.length > 4
 
-export const validateError = (questionTitle, answersData, selectedAnswer) => {
-  const answers = Object.values(answersData)
-
+export const validateError = (questionTitle, answers, selectedAnswer) => {
   if (isTitleValid(questionTitle) === false) {
     return 'Вопрос должен содержать не менее пяти символов'
   }

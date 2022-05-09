@@ -12,8 +12,14 @@ const ModalSignIn = ({ modalSignInActive, setModalSignInActive }) => {
   const [errorMessage, setErrorMessage] = useState(null)
   const [successMessage, setSuccessMessage] = useState(null)
 
-  const emailHandler = e => (setEmail(e.target.value), setErrorMessage(null))
-  const passwordHandler = e => (setPassword(e.target.value), setErrorMessage(null))
+  const emailHandler = e => {
+    setEmail(e.target.value.trim())
+    setErrorMessage(null)
+  }
+  const passwordHandler = e => {
+    setPassword(e.target.value)
+    setErrorMessage(null)
+  }
 
   const signInHandler = async e => {
     e.preventDefault()

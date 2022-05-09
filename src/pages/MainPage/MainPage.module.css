@@ -66,7 +66,7 @@
 }
 
 .logo {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 
   font-family: 'Quicksand', sans-serif;
   font-size: 85px;
@@ -81,6 +81,30 @@
 .form {
   display: flex;
   flex-direction: column;
+}
+
+.userMessage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transform: scale(0);
+
+  height: 50px;
+
+  text-align: center;
+  font-size: 18px;
+  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+.error {
+  color: red;
+  opacity: 1;
+  transform: scale(1);
+}
+.success {
+  color: green;
+  opacity: 1;
+  transform: scale(1);
 }
 
 .pincode {

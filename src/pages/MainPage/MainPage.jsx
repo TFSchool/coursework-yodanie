@@ -1,23 +1,58 @@
 import cn from 'classnames'
 import { useState } from 'react'
-import ModalSignIn from '../../components/ModalSignIn'
 import ModalRegistration from '../../components/ModalRegistration'
+import ModalSignIn from '../../components/ModalSignIn'
 import Nav from '../../components/Nav/Nav'
-import MyLink from '../../components/UI/Buttons/MyLink'
+import Button from '../../components/UI/Buttons/Button'
+import Loader from '../../components/UI/Loader/Loader'
+import { supabase } from '../../supabaseClient'
 import styles from './MainPage.module.css'
 import QuestionMark from './questionMark.png'
 import quoteImage from './quote.png'
+import { useNavigate } from 'react-router-dom'
+
+const UUID_LENGTH = 36
 
 const MainPage = () => {
+  const [isLoading, setIsLoading] = useState(false)
   const [pincode, setPincode] = useState('')
   const [modalSignInActive, setModalSignInActive] = useState(false)
   const [modalSignUpActive, setModalSignUpActive] = useState(false)
-  const pincodeHandler = e => setPincode(e.target.value)
+  const [errorMessage, setErrorMessage] = useState(null)
+  const pincodeHandler = e => {
+    setPincode(e.target.value.trim())
+    setErrorMessage(null)
+  }
   const signInHandler = () => setModalSignInActive(true)
   const signUpHandler = () => setModalSignUpActive(true)
 
+  const navigate = useNavigate()
+
+  const playHandler = async () => {
+    if (pincode.length !== UUID_LENGTH) {
+      setErrorMessage('Введите корректный код')
+      return
+    }
+    setIsLoading(true)
+    try {
+      const { data, error } = await supabase.from('games').select().eq('id', pincode)
+
+      if (error || data.length === 0) {
+        setErrorMessage('Такой игры не существует')
+      }
+      if (data.length > 0) {
+        navigate(`guess-play/${pincode}`)
+      }
+    } catch (err) {
+      console.log(`Catch worked: ${err}`)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   return (
     <>
+      {isLoading && <Loader />}
       <ModalSignIn
         modalSignInActive={modalSignInActive}
         setModalSignInActive={setModalSignInActive}
@@ -50,6 +85,10 @@ const MainPage = () => {
           />
           <div className={styles.logo}>Guessy</div>
           <form className={styles.form}>
+            <div className={cn(styles.userMessage, errorMessage && styles.error)}>
+              {errorMessage}
+            </div>
+
             <input
               value={pincode}
               onChange={pincodeHandler}
@@ -57,11 +96,11 @@ const MainPage = () => {
               type="text"
               placeholder="Введите код доступа"
             />
-            <MyLink
-              to={`guess-play/${pincode}`}
-              text="Присоединиться"
+            <Button
+              onClick={playHandler}
+              text="Поиграть"
               bgcolor="violet"
-              size="medium"
+              size="big"
               customStyle="center"
             />
           </form>

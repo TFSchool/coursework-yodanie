@@ -100,15 +100,24 @@ const GuessCreation = ({
 
   const newQuestionHandler = e => {
     e.preventDefault()
-
-    const error = validateError(questionTitle, answersData, selectedAnswer)
+    const trimmedTitle = questionTitle.trim()
+    const trimmedAnswerValues = Object.values(answersData).map(a => a.trim())
+    const trimmedAnswers = {
+      answerA: trimmedAnswerValues[0],
+      answerB: trimmedAnswerValues[1],
+      answerC: trimmedAnswerValues[2],
+      answerD: trimmedAnswerValues[3],
+    }
+    const error = validateError(trimmedTitle, trimmedAnswerValues, selectedAnswer)
     if (error) {
+      setQuestionTitle(trimmedTitle)
+      setAnswersData(trimmedAnswers)
       setValidationError(error)
       return
     }
     const newQuestion = {
-      questionTitle,
-      answersData,
+      questionTitle: trimmedTitle,
+      answersData: trimmedAnswers,
       correctAnswer: selectedAnswer,
       questionImagePreview,
       questionImageName: questionImageFile && `${uuid()}-${questionImageFile.name}`,

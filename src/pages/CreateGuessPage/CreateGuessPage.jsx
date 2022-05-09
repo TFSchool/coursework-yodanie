@@ -5,13 +5,10 @@ import Header from '../../components/Header/Header'
 import ModalNewGuess from '../../components/ModalNewGuess'
 import Nav from '../../components/Nav/Nav'
 import QuestionsList from '../../components/QuestionsList/QuestionsList'
+import Button from '../../components/UI/Buttons/Button'
 import Loader from '../../components/UI/Loader/Loader'
 import { supabase } from '../../supabaseClient'
 import styles from './CreateGuessPage.module.css'
-import { useAuth } from '../../contexts/AuthContext'
-import { useNavigate } from 'react-router-dom'
-import Button from '../../components/UI/Buttons/Button'
-import { v4 as uuid } from 'uuid'
 
 const SUPABASE_IMAGES_STORAGE_URL =
   'https://cryqluuukumkkiztlbng.supabase.co/storage/v1/object/public/images'
@@ -41,8 +38,10 @@ const CreateGuessPage = () => {
   const createNewGuessHandler = async e => {
     e.preventDefault()
 
-    if (gameTitle.length === 0) {
+    const trimmedTitle = gameTitle.trim()
+    if (trimmedTitle.length === 0) {
       setErrorMessage('Введите название')
+      setGameTitle(trimmedTitle)
       return
     }
     if (savedQuestions.length === 0) {
@@ -65,7 +64,7 @@ const CreateGuessPage = () => {
     }, [])
 
     const gameData = {
-      gameTitle,
+      gameTitle: trimmedTitle,
       questions: questionsData,
       userId: user.id,
     }
@@ -79,11 +78,9 @@ const CreateGuessPage = () => {
           const blob = await image64.blob()
           const imageFile = new File([blob], imgName, { type: 'image' })
           await supabase.storage.from('images').upload(imgName, imageFile)
-          console.log('Image saved in supabase')
         }
       }
       await supabase.from('games').insert(gameData)
-      console.log('Data inserted in tables')
     } catch (err) {
       console.log(err)
     } finally {

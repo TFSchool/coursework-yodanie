@@ -1,5 +1,6 @@
 .guessListItem {
   position: relative;
+
   width: 100%;
   max-width: 650px;
   height: 160px;
@@ -18,8 +19,12 @@
 }
 
 .guessTitle {
-  margin-bottom: 40px;
+  margin: 20px 0 30px 0;
 
+  white-space: nowrap;
+  overflow: hidden;
+  word-break: break-all;
+  text-overflow: ellipsis;
   text-align: center;
   font-size: 32px;
   font-weight: 700;
@@ -35,6 +40,7 @@
   font-weight: 700;
 }
 .copy {
+  position: relative;
   display: flex;
   align-items: center;
 
@@ -76,6 +82,7 @@
 }
 
 .deleteButton {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -87,4 +94,45 @@
 .modalButtons {
   display: flex;
   justify-content: space-evenly;
+}
+
+.tip .tipText {
+  position: absolute;
+  z-index: 1;
+  top: -100%;
+  left: 50%;
+  transform: translate3d(-50%, 50%, 0);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 140px;
+  padding: 5px;
+
+  background-color: var(--color-violetDark);
+  color: #fff;
+  border-radius: 6px;
+  font-size: 17px;
+  font-weight: 500;
+
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.tip .tipText::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--color-violetDark) transparent transparent transparent;
+}
+
+.tip:hover .tipText {
+  transform: translate3d(-50%, 0, 0);
+  visibility: visible;
+  opacity: 1;
 }

@@ -13,9 +13,18 @@ const ModalRegistration = ({ modalSignUpActive, setModalSignUpActive }) => {
   const [errorMessage, setErrorMessage] = useState(null)
   const [successMessage, setSuccessMessage] = useState(null)
 
-  const emailHandler = e => (setEmail(e.target.value), setErrorMessage(null))
-  const passwordHandler = e => (setPassword(e.target.value), setErrorMessage(null))
-  const passwordConfirmHandler = e => (setPasswordConfirm(e.target.value), setErrorMessage(null))
+  const emailHandler = e => {
+    setEmail(e.target.value.trim())
+    setErrorMessage(null)
+  }
+  const passwordHandler = e => {
+    setPassword(e.target.value)
+    setErrorMessage(null)
+  }
+  const passwordConfirmHandler = e => {
+    setPasswordConfirm(e.target.value)
+    setErrorMessage(null)
+  }
 
   const signUpHandler = async e => {
     e.preventDefault()

@@ -6,6 +6,7 @@ import { ReactComponent as DeleteIcon } from '../../assets/icons/delete-icon.svg
 import { supabase } from '../../supabaseClient'
 import Modal from '../UI/Modal/Modal'
 import Button from '../UI/Buttons/Button'
+import cn from 'classnames'
 
 const GuessListItem = ({
   id,
@@ -18,6 +19,7 @@ const GuessListItem = ({
   const [modalDeleteGameActive, setModalDeleteGameActive] = useState(false)
   const [errorMessage, setErrorMessage] = useState(null)
   const [successMessage, setSuccessMessage] = useState(null)
+  const [tipActive, setTipActive] = useState(false)
 
   const deleteGameHandler = async () => {
     setIsLoading(true)
@@ -33,15 +35,20 @@ const GuessListItem = ({
     }
   }
 
-  const pincodeCopyHandler = () => navigator.clipboard.writeText(id)
-
+  const pincodeCopyHandler = () => {
+    navigator.clipboard.writeText(id)
+    setTipActive(true)
+    setTimeout(() => {
+      setTipActive(false)
+    }, 3000)
+  }
   const modalHandler = () => setModalDeleteGameActive(prev => !prev)
 
   return (
     <>
       {modalDeleteGameActive && (
         <Modal
-          title="Вы уверены что хотите удалить квиз?"
+          title="Вы уверены, что хотите удалить квиз?"
           modalActive={modalDeleteGameActive}
           setModalActive={setModalDeleteGameActive}
           errorMessage={errorMessage}
@@ -65,8 +72,11 @@ const GuessListItem = ({
             {getDeclension('вопрос', 'вопроса', 'вопросов')(totalQuestions)}
           </div>
           <div className={styles.actions}>
-            <button onClick={pincodeCopyHandler} className={styles.copy}>
-              <span className={styles.copyText}>Код доступа</span>
+            <button onClick={pincodeCopyHandler} className={cn(styles.copy, styles.tip)}>
+              <span className={styles.tipText}>{tipActive ? 'Скопировано!' : 'Скопировать'}</span>
+              <span title="привет" className={styles.copyText}>
+                Код доступа
+              </span>
               <CopyIcon className={styles.copyIcon} />
             </button>
           </div>

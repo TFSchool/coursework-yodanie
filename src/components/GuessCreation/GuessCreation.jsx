@@ -121,7 +121,7 @@ const GuessCreation = ({
       answersData: trimmedAnswers,
       correctAnswer: selectedAnswer,
       questionImagePreview,
-      questionImageName: questionImagePreview && `${uuid()}-${questionImageFile.name}`,
+      questionImageName: questionImagePreview && `${questionImageFile.name}-${uuid()}`,
     }
     if (urlParams.id) {
       newQuestion.id = urlParams.id

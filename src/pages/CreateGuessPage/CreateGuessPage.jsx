@@ -58,6 +58,7 @@ const CreateGuessPage = () => {
         imageUrl:
           question.questionImageName &&
           `${SUPABASE_IMAGES_STORAGE_URL}/${question.questionImageName}`,
+        imageName: question.questionImageName,
       }
       acc.push(result)
       return acc

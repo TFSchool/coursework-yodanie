@@ -33,8 +33,9 @@ const GuessGameplay = ({
     setIsSurrender(true)
     setTimeout(() => {
       setIsSurrender(false)
-    }, 2000)
+    }, 3000)
   }
+
   const imgOnloadHandler = () => {
     setImageIsLoading(false)
   }

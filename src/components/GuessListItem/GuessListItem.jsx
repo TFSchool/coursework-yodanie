@@ -23,7 +23,19 @@ const GuessListItem = ({
 
   const deleteGameHandler = async () => {
     setIsLoading(true)
+    const gameImages = profileData
+      .find(g => g.id === id)
+      .questions.reduce((acc, question) => {
+        if (question.imageName !== null) {
+          acc.push(question.imageName)
+        }
+        return acc
+      }, [])
+
     try {
+      if (gameImages.length > 0) {
+        await supabase.storage.from('images').remove(gameImages)
+      }
       await supabase.from('games').delete().match({ id: id })
       setProfileData([...profileData].filter(game => game.id !== id))
       setSuccessMessage('Игра успешно удалена!')

@@ -42,3 +42,9 @@
   width: 180px;
   height: 220px;
 }
+
+@media (max-width: 576px) {
+  .mainPage {
+    padding: 15px 0;
+  }
+}

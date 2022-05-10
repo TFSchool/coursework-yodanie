@@ -1,5 +1,3 @@
-@import '../../vars.css';
-
 .guessAnswers {
   display: flex;
   flex-wrap: wrap;

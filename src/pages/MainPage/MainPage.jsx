@@ -10,8 +10,7 @@ import styles from './MainPage.module.css'
 import QuestionMark from './questionMark.png'
 import quoteImage from './quote.png'
 import { useNavigate } from 'react-router-dom'
-
-const UUID_LENGTH = 36
+import { UUID_LENGTH } from '../../constants'
 
 const MainPage = () => {
   const [modalSignInActive, setModalSignInActive] = useState(false)

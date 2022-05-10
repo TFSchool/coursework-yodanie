@@ -1,12 +1,7 @@
 import cn from 'classnames'
 import styles from './Answers.module.css'
 import { ReactComponent as CheckMark } from './checkMark.svg'
-
-const ANSWER_A = 'answerA'
-const ANSWER_B = 'answerB'
-const ANSWER_C = 'answerC'
-const ANSWER_D = 'answerD'
-const INPUT_PLACEHOLDER = 'Вариант ответа'
+import { ANSWER_A, ANSWER_B, ANSWER_C, ANSWER_D, ANSWERS_INPUT_PLACEHOLDER } from '../../constants'
 
 const Answers = ({
   gameplay,
@@ -34,7 +29,7 @@ const Answers = ({
               onChange={handleAnswerInput}
               className={styles.answerInput}
               type="text"
-              placeholder={INPUT_PLACEHOLDER}
+              placeholder={ANSWERS_INPUT_PLACEHOLDER}
             />
             <button
               name={ANSWER_A}
@@ -54,7 +49,7 @@ const Answers = ({
               className={styles.answerInput}
               onChange={handleAnswerInput}
               type="text"
-              placeholder={INPUT_PLACEHOLDER}
+              placeholder={ANSWERS_INPUT_PLACEHOLDER}
             />
             <button
               name={ANSWER_B}
@@ -74,7 +69,7 @@ const Answers = ({
               className={styles.answerInput}
               onChange={handleAnswerInput}
               type="text"
-              placeholder={INPUT_PLACEHOLDER}
+              placeholder={ANSWERS_INPUT_PLACEHOLDER}
             />
             <button
               name={ANSWER_C}
@@ -94,7 +89,7 @@ const Answers = ({
               className={styles.answerInput}
               onChange={handleAnswerInput}
               type="text"
-              placeholder={INPUT_PLACEHOLDER}
+              placeholder={ANSWERS_INPUT_PLACEHOLDER}
             />
             <button
               name={ANSWER_D}

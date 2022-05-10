@@ -8,10 +8,8 @@ import QuestionsList from '../../components/QuestionsList/QuestionsList'
 import Button from '../../components/UI/Buttons/Button'
 import Loader from '../../components/UI/Loader/Loader'
 import { supabase } from '../../supabaseClient'
+import { SUPABASE_IMAGES_STORAGE_URL } from '../../constants'
 import styles from './CreateGuessPage.module.css'
-
-const SUPABASE_IMAGES_STORAGE_URL =
-  'https://cryqluuukumkkiztlbng.supabase.co/storage/v1/object/public/images'
 
 const CreateGuessPage = () => {
   const [isLoading, setIsLoading] = useState(false)

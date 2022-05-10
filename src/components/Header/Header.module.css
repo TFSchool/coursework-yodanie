@@ -39,7 +39,10 @@
     border-bottom: 3px dashed var(--color-violetDark);
   }
   .logo {
-    font-size: 25px;
+    width: 30px;
+    height: 30px;
+    background: url(./logo.png) center no-repeat;
+    font-size: 0;
     text-shadow: 1px 1px 0 var(--color-violetDark), 2px 2px 0 var(--color-violetDark);
   }
   .pageTitle {

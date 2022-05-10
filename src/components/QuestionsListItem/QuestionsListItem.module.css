@@ -55,3 +55,6 @@
 .placeholder {
   object-fit: contain;
 }
+
+@media (max-width: 576px) {
+}

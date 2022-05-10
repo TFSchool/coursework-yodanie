@@ -44,6 +44,11 @@ textarea {
   font-size: inherit;
   background: inherit;
 }
+input::placeholder {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
 
 input::-ms-clear {
   display: none;

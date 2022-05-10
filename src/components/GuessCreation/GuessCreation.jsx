@@ -2,11 +2,12 @@ import cn from 'classnames'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
-import { supabase } from '../../supabaseClient'
 import { validateError } from '../../utils/validators'
 import Answers from '../Answers/Answers'
 import Button from '../UI/Buttons/Button'
 import styles from './GuessCreation.module.css'
+import btnStyles from '../../components/UI/Buttons/AddNew.module.css'
+import AddImageButton from './AddImageButton'
 
 const GuessCreation = ({
   initLoadCompleted,
@@ -157,21 +158,12 @@ const GuessCreation = ({
         {questionImagePreview ? (
           <>
             <div className={styles.guessImageWrapper}>
-              <div className={styles.guessPictureButtons}>
-                <label className={cn(styles.pictureButton, styles.editButton)}>
-                  <input
-                    className="fileInput"
-                    type="file"
-                    accept="image/*"
-                    onChange={handleImageInput}
-                  />
-                </label>
-                <button
-                  type="button"
-                  className={cn(styles.pictureButton, styles.deleteButton)}
-                  onClick={deleteImageHandler}
-                ></button>
-              </div>
+              <button
+                type="button"
+                className={styles.deleteButton}
+                onClick={deleteImageHandler}
+              ></button>
+
               <div className={styles.guessPicture}>
                 <img src={questionImagePreview} alt="картинка вопроса" />
               </div>
@@ -180,14 +172,7 @@ const GuessCreation = ({
         ) : (
           <div className={cn(styles.guessImageWrapper, styles.guessImageEditing)}>
             <p className={styles.imageText}>Вставьте картинку</p>
-            <label className={styles.uploadImageButton}>
-              <input
-                className="fileInput"
-                type="file"
-                accept="image/*"
-                onChange={handleImageInput}
-              />
-            </label>
+            <AddImageButton handleImageInput={handleImageInput} />
           </div>
         )}
 

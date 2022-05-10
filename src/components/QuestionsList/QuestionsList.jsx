@@ -2,6 +2,7 @@ import cn from 'classnames'
 import { NavLink } from 'react-router-dom'
 import QuestionsListItem from '../QuestionsListItem/QuestionsListItem'
 import styles from './QuestionsList.module.css'
+import btnStyles from '../../components/UI/Buttons/AddNew.module.css'
 
 const QuestionsList = ({ savedQuestions, setSavedQuestions, setIndexOfDeletedQuestion }) => {
   return (
@@ -30,7 +31,7 @@ const QuestionsList = ({ savedQuestions, setSavedQuestions, setIndexOfDeletedQue
           <div className={styles.info}>Список вопросов пуст</div>
         )}
 
-        <NavLink to="/create-guess" className={cn(styles.navlink, styles.addNewButton)}></NavLink>
+        <NavLink to="/create-guess" className={btnStyles.addNewButton}></NavLink>
       </section>
     </>
   )

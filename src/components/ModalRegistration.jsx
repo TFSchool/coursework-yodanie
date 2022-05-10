@@ -44,7 +44,7 @@ const ModalRegistration = ({ modalRegistration, setModalRegistration }) => {
       if (error) {
         setErrorMessage(error)
       }
-      setSuccessMessage('Регистрация прошла успешно! Проверьте почту для подтверждения.')
+      setSuccessMessage('Регистрация прошла успешно!')
     } finally {
       setIsLoading(false)
     }

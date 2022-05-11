@@ -78,6 +78,7 @@ const GameplayPage = () => {
             <GameOver
               isBlurred={isBlurred}
               isGameWon={isGameWon}
+              totalQuestions={totalQuestions}
               correctCounter={correctCounter}
               setCurrentQuestionIndex={setCurrentQuestionIndex}
               setCorrectCounter={setCorrectCounter}

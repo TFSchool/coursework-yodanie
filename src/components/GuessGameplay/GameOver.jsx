@@ -10,6 +10,7 @@ const GameOver = ({
   correctCounter,
   setCurrentQuestionIndex,
   setCorrectCounter,
+  totalQuestions,
 }) => {
   const playAgainHandler = () => {
     setCorrectCounter(0)
@@ -33,7 +34,7 @@ const GameOver = ({
                 'вопрос',
                 'вопроса',
                 'вопросов'
-              )(correctCounter)}`}
+              )(correctCounter)} из ${totalQuestions}`}
         </p>
         <nav className={styles.nav}>
           <Button

@@ -26,8 +26,7 @@
   transition: all 0.1s linear;
 }
 
-.element:hover,
-.element:focus {
+.element:hover {
   top: 0;
   left: 0;
 }

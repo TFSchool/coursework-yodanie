@@ -1,11 +1,14 @@
 .guessListItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   position: relative;
 
   width: 100%;
   max-width: 650px;
   height: 160px;
   margin-bottom: 40px;
-  padding: 25px;
+  padding: 20px 40px;
 
   background-color: var(--color-yellow);
   border: 5px solid var(--color-violetDark);
@@ -19,8 +22,6 @@
 }
 
 .guessTitle {
-  margin: 20px 0;
-
   white-space: nowrap;
   overflow: hidden;
   word-break: break-all;
@@ -40,102 +41,14 @@
   font-size: 32px;
   font-weight: 700;
 }
-.copy {
-  position: relative;
+.actions {
   display: flex;
   align-items: center;
-
-  cursor: pointer;
-}
-
-.copyText {
-  margin-right: 5px;
-  transition: all 0.2s linear;
-}
-.copyIcon {
-  width: 35px;
-  height: 35px;
-}
-.copyIcon * {
-  transition: all 0.2s linear;
-  fill: var(--color-violetDark);
-}
-.copy:hover {
-  color: black;
-}
-
-.copy:hover .copyIcon * {
-  fill: black;
-}
-
-.icon {
-  width: 30px;
-  height: 30px;
-  fill: var(--color-violetDark);
-}
-.icon * {
-  transition: all 0.2s linear;
-  fill: var(--color-violetDark);
-}
-
-.icon:hover * {
-  fill: black;
-}
-
-.deleteButton {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 10%;
-  right: 4%;
 }
 
 .modalButtons {
   display: flex;
   justify-content: space-evenly;
-}
-
-.tip .tipText {
-  position: absolute;
-  z-index: 1;
-  top: -100%;
-  left: 50%;
-  transform: translate3d(-50%, 50%, 0);
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 140px;
-  padding: 5px;
-
-  background-color: var(--color-violetDark);
-  color: #fff;
-  border-radius: 6px;
-  font-size: 17px;
-  font-weight: 500;
-
-  visibility: hidden;
-  opacity: 0;
-  transition: all 0.2s ease-in-out;
-}
-
-.tip .tipText::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: var(--color-violetDark) transparent transparent transparent;
-}
-
-.tip:hover .tipText {
-  transform: translate3d(-50%, 0, 0);
-  visibility: visible;
-  opacity: 1;
 }
 
 @media (max-width: 576px) {
@@ -147,22 +60,9 @@
     font-size: 18px;
   }
   .guessTitle {
-    margin: 23px 0;
     font-size: 22px;
   }
   .counter {
     font-size: 22px;
-  }
-  .icon {
-    width: 25px;
-    height: 25px;
-  }
-  .copyIcon {
-    width: 25px;
-    height: 25px;
-  }
-  .deleteButton {
-    top: 5%;
-    right: 2%;
   }
 }

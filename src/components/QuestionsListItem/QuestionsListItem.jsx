@@ -1,8 +1,9 @@
 import cn from 'classnames'
-import ImagePlaceHolder from '../../assets/icons/picture3.svg'
+import ImagePlaceHolder from '../../assets/icons/picture.svg'
 import styles from './QuestionsListItem.module.css'
 
 const QuestionsListItem = ({
+  gameId,
   id,
   title,
   number,
@@ -15,10 +16,12 @@ const QuestionsListItem = ({
     e.preventDefault()
     setIndexOfDeletedQuestion(savedQuestions.findIndex(q => q.id === id))
     setSavedQuestions([...savedQuestions.filter(q => q.id !== id)])
-    localStorage.setItem(
-      'savedQuestions',
-      JSON.stringify([...savedQuestions.filter(question => question.id !== id)])
-    )
+    if (!gameId) {
+      localStorage.setItem(
+        'savedQuestions',
+        JSON.stringify([...savedQuestions.filter(question => question.id !== id)])
+      )
+    }
   }
 
   return (

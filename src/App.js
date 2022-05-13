@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Layout from './components/Layout'
 import CreateGuessPage from './pages/CreateGuessPage/CreateGuessPage'
+import EditGuessPage from './pages/EditGuessPage/EditGuessPage'
 import GameplayPage from './pages/GameplayPage/GameplayPage'
 import MagicLinkPage from './pages/MagicLinkPage/MagicLinkPage'
 import MainPage from './pages/MainPage/MainPage'
@@ -17,6 +18,8 @@ function App() {
           <Route path="guess-play/:gameId" element={<GameplayPage />} />
           <Route path="create-guess" element={<CreateGuessPage />} />
           <Route path="create-guess/question/:id" element={<CreateGuessPage />} />
+          <Route path="edit-guess/:gameId" element={<EditGuessPage />} />
+          <Route path="edit-guess/:gameId/question/:id" element={<EditGuessPage />} />
           <Route path="profile/:id" element={<ProfilePage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>

@@ -3,12 +3,12 @@ import MyLink from './UI/Buttons/MyLink'
 import Modal from './UI/Modal/Modal'
 import { supabase } from '../supabaseClient'
 
-const ModalNewGuess = ({
-  modalNewGuessActive,
-  setModalNewGuessActive,
+const ModalEditGuess = ({
+  modalEditGuessActive,
+  setModalEditGuessActive,
   gameTitle,
   setGameTitle,
-  newGuessHandler,
+  editGuessHandler,
   errorMessage,
   setErrorMessage,
   successMessage,
@@ -17,11 +17,11 @@ const ModalNewGuess = ({
   const user = supabase.auth.user()
   return (
     <Modal
-      design="grey"
-      modalActive={modalNewGuessActive}
-      setModalActive={setModalNewGuessActive}
-      title="Сохранение игры"
-      submitHandler={newGuessHandler}
+      design="yellow"
+      modalActive={modalEditGuessActive}
+      setModalActive={setModalEditGuessActive}
+      title="Редактирование игры"
+      submitHandler={editGuessHandler}
       errorMessage={errorMessage}
       successMessage={successMessage}
     >
@@ -53,4 +53,4 @@ const ModalNewGuess = ({
   )
 }
 
-export default ModalNewGuess
+export default ModalEditGuess

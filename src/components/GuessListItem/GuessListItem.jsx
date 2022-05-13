@@ -1,12 +1,14 @@
-import styles from './GuessListItem.module.css'
 import { useState } from 'react'
-import { getDeclension } from '../../utils/getWordDeclension'
-import { ReactComponent as CopyIcon } from '../../assets/icons/copy2.svg'
-import { ReactComponent as DeleteIcon } from '../../assets/icons/delete-icon.svg'
 import { supabase } from '../../supabaseClient'
-import Modal from '../UI/Modal/Modal'
+import { getDeclension } from '../../utils/getWordDeclension'
 import Button from '../UI/Buttons/Button'
-import cn from 'classnames'
+import Modal from '../UI/Modal/Modal'
+import CopyAction from './CopyAction'
+import DeleteAction from './DeleteAction'
+import EditAction from './EditAction'
+import styles from './GuessListItem.module.css'
+import PlayAction from './PlayAction'
+import ShareAction from './ShareAction'
 
 const GuessListItem = ({
   id,
@@ -19,7 +21,6 @@ const GuessListItem = ({
   const [modalDeleteGameActive, setModalDeleteGameActive] = useState(false)
   const [errorMessage, setErrorMessage] = useState(null)
   const [successMessage, setSuccessMessage] = useState(null)
-  const [tipActive, setTipActive] = useState(false)
 
   const deleteGameHandler = async () => {
     setIsLoading(true)
@@ -47,14 +48,7 @@ const GuessListItem = ({
     }
   }
 
-  const pincodeCopyHandler = () => {
-    navigator.clipboard.writeText(id)
-    setTipActive(true)
-    setTimeout(() => {
-      setTipActive(false)
-    }, 3000)
-  }
-  const modalHandler = () => setModalDeleteGameActive(prev => !prev)
+  const deleteModalHandler = () => setModalDeleteGameActive(prev => !prev)
 
   return (
     <>
@@ -68,15 +62,12 @@ const GuessListItem = ({
         >
           <div className={styles.modalButtons}>
             <Button onClick={deleteGameHandler} text="Удалить" size="small" />
-            <Button onClick={modalHandler} text="Отмена" size="small" />
+            <Button onClick={deleteModalHandler} text="Отмена" size="small" />
           </div>
         </Modal>
       )}
 
       <div className={styles.guessListItem}>
-        <button onClick={modalHandler} className={styles.deleteButton}>
-          <DeleteIcon className={styles.icon} />
-        </button>
         <div className={styles.guessTitle}>{title}</div>
         <div className={styles.info}>
           <div className="questionsCount">
@@ -84,13 +75,11 @@ const GuessListItem = ({
             {getDeclension('вопрос', 'вопроса', 'вопросов')(totalQuestions)}
           </div>
           <div className={styles.actions}>
-            <button onClick={pincodeCopyHandler} className={cn(styles.copy, styles.tip)}>
-              <span className={styles.tipText}>{tipActive ? 'Скопировано!' : 'Скопировать'}</span>
-              <span title="привет" className={styles.copyText}>
-                Код доступа
-              </span>
-              <CopyIcon className={styles.copyIcon} />
-            </button>
+            <PlayAction id={id} />
+            <CopyAction id={id} />
+            <ShareAction id={id} />
+            <EditAction id={id} />
+            <DeleteAction deleteModalHandler={deleteModalHandler} />
           </div>
         </div>
       </div>

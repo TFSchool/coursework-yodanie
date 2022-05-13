@@ -5,6 +5,7 @@ import styles from './Nav.module.css'
 import { useAuth } from '../../contexts/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
+import { CREATE_NEW_GUESS_PAGE, CREATE_NEW_GUESS_SUBMIT } from '../../constants'
 
 const Nav = ({ currentPage, signInHandler, registrationHandler, children }) => {
   const logout = () => supabase.auth.signOut()
@@ -28,7 +29,7 @@ const Nav = ({ currentPage, signInHandler, registrationHandler, children }) => {
                 to="/create-guess"
                 bgcolor="green"
                 size="small"
-                text="Создать квиз"
+                text={CREATE_NEW_GUESS_PAGE}
                 customStyle="spacing"
               />
               <MyLink
@@ -46,7 +47,7 @@ const Nav = ({ currentPage, signInHandler, registrationHandler, children }) => {
                 to="/create-guess"
                 bgcolor="green"
                 size="small"
-                text="Создать квиз"
+                text={CREATE_NEW_GUESS_PAGE}
                 customStyle="spacing"
               />
               <MyLink
@@ -62,9 +63,9 @@ const Nav = ({ currentPage, signInHandler, registrationHandler, children }) => {
             <>
               <MyLink
                 to="/create-guess"
-                bgcolor="green"
+                bgcolor="yellow"
                 size="small"
-                text="Создать квиз"
+                text={CREATE_NEW_GUESS_PAGE}
                 customStyle="spacing"
               />
               <Button
@@ -76,7 +77,7 @@ const Nav = ({ currentPage, signInHandler, registrationHandler, children }) => {
               />
             </>
           )}
-          {currentPage === 'create-guess' && (
+          {(currentPage === 'create-guess' || currentPage === 'edit-guess') && (
             <>
               <MyLink
                 to={`/profile/${user.id}`}

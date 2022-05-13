@@ -4,23 +4,33 @@ import QuestionsListItem from '../QuestionsListItem/QuestionsListItem'
 import styles from './QuestionsList.module.css'
 import btnStyles from '../../components/UI/Buttons/AddNew.module.css'
 
-const QuestionsList = ({ savedQuestions, setSavedQuestions, setIndexOfDeletedQuestion }) => {
+const QuestionsList = ({
+  gameId,
+  savedQuestions,
+  setSavedQuestions,
+  setIndexOfDeletedQuestion,
+}) => {
   return (
     <>
       <section className={styles.questionsList}>
         {savedQuestions.length > 0 ? (
           savedQuestions.map((question, index) => (
             <NavLink
-              to={`/create-guess/question/${question.id}`}
+              to={
+                gameId
+                  ? `/edit-guess/${gameId}/question/${question.id}`
+                  : `/create-guess/question/${question.id}`
+              }
               key={question.id}
               className={({ isActive }) => cn(styles.navlink, isActive && styles.activeLink)}
             >
               <QuestionsListItem
+                gameId={gameId}
                 key={question.id}
                 id={question.id}
                 number={index + 1}
                 title={question.questionTitle}
-                image={question.questionImagePreview}
+                image={question.imagePreview || question.imageUrl}
                 savedQuestions={savedQuestions}
                 setSavedQuestions={setSavedQuestions}
                 setIndexOfDeletedQuestion={setIndexOfDeletedQuestion}
@@ -31,7 +41,10 @@ const QuestionsList = ({ savedQuestions, setSavedQuestions, setIndexOfDeletedQue
           <div className={styles.info}>Список вопросов пуст</div>
         )}
 
-        <NavLink to="/create-guess" className={btnStyles.addNewButton}></NavLink>
+        <NavLink
+          to={gameId ? `/edit-guess/${gameId}` : '/create-guess'}
+          className={btnStyles.addNewButton}
+        ></NavLink>
       </section>
     </>
   )

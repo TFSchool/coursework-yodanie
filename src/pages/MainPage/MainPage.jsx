@@ -40,7 +40,7 @@ const MainPage = () => {
         setErrorMessage('Такой игры не существует')
       }
       if (data.length > 0) {
-        navigate(`guess-play/${pincode}`)
+        navigate(`/guess-play/${pincode}`)
       }
     } catch (err) {
       console.log(`Catch worked: ${err}`)

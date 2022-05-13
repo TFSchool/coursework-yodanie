@@ -6,10 +6,10 @@ import { validateError } from '../../utils/validators'
 import Answers from '../Answers/Answers'
 import Button from '../UI/Buttons/Button'
 import styles from './GuessCreation.module.css'
-import btnStyles from '../../components/UI/Buttons/AddNew.module.css'
 import AddImageButton from './AddImageButton'
 
 const GuessCreation = ({
+  gameId,
   initLoadCompleted,
   savedQuestions,
   setSavedQuestions,
@@ -23,8 +23,9 @@ const GuessCreation = ({
     answerD: '',
   })
   const [selectedAnswer, setSelectedAnswer] = useState(null)
-  const [questionImageFile, setQuestionImageFile] = useState(null)
-  const [questionImagePreview, setQuestionImagePreview] = useState(null)
+  const [imageFile, setImageFile] = useState(null)
+  const [imagePreview, setImagePreview] = useState(null)
+  const [imageUrl, setImageUrl] = useState(null)
   const [validationError, setValidationError] = useState(null)
   const urlParams = useParams()
   const navigate = useNavigate()
@@ -41,7 +42,8 @@ const GuessCreation = ({
       answerD: '',
     })
     setSelectedAnswer(null)
-    setQuestionImagePreview(null)
+    setImagePreview(null)
+    setImageUrl(null)
   }
 
   useEffect(() => {
@@ -54,36 +56,42 @@ const GuessCreation = ({
         setQuestionTitle(activeQuestion.questionTitle)
         setAnswersData(activeQuestion.answersData)
         setSelectedAnswer(activeQuestion.correctAnswer)
-        setQuestionImagePreview(activeQuestion.questionImagePreview)
+        setImagePreview(activeQuestion.imagePreview)
+        setImageUrl(activeQuestion.imageUrl)
       }
       if (initLoadCompleted && savedQuestions.length === 0) {
-        navigate(`/create-guess`)
+        navigate(gameId ? `/edit-guess/${gameId}` : `/create-guess`)
         return
       }
       if (initLoadCompleted && !savedQuestions.some(q => q.id === urlParams.id)) {
         const nextId = savedQuestions[indexOfDeletedQuestion]
           ? savedQuestions[indexOfDeletedQuestion].id
           : savedQuestions[savedQuestions.length - 1].id
-        navigate(`/create-guess/question/${nextId}`)
+        navigate(
+          gameId ? `/edit-guess/${gameId}/question/${nextId}` : `/create-guess/question/${nextId}`
+        )
       }
     }
   }, [urlParams.id, savedQuestions])
 
   useEffect(() => {
-    if (questionImageFile) {
+    if (imageFile) {
       const reader = new FileReader()
-      reader.onloadend = () => setQuestionImagePreview(reader.result)
-      reader.readAsDataURL(questionImageFile)
+      reader.onloadend = () => setImagePreview(reader.result)
+      reader.readAsDataURL(imageFile)
     } else {
-      setQuestionImagePreview(null)
+      setImagePreview(null)
     }
-  }, [questionImageFile])
+  }, [imageFile])
 
   const handleTitleInput = e => (setQuestionTitle(e.target.value), clearUserMessages())
-  const handleImageInput = e => (setQuestionImageFile(e.target.files[0]), clearUserMessages())
-  const deleteImageHandler = () => (
-    setQuestionImageFile(null), setQuestionImagePreview(null), clearUserMessages()
-  )
+  const handleImageInput = e => (setImageFile(e.target.files[0]), clearUserMessages())
+  const deleteImageHandler = () => {
+    setImageFile(null)
+    setImagePreview(null)
+    setImageUrl(null)
+    clearUserMessages()
+  }
 
   const handleAnswerInput = e => {
     clearUserMessages()
@@ -121,8 +129,9 @@ const GuessCreation = ({
       questionTitle: trimmedTitle,
       answersData: trimmedAnswers,
       correctAnswer: selectedAnswer,
-      questionImagePreview,
-      questionImageName: questionImagePreview && `${uuid()}-${questionImageFile.name}`,
+      imagePreview,
+      imageName: imagePreview && `${uuid()}-${imageFile.name}`,
+      imageUrl,
     }
     if (urlParams.id) {
       newQuestion.id = urlParams.id
@@ -130,11 +139,15 @@ const GuessCreation = ({
       const newData = [...savedQuestions]
       newData[editingIndex] = newQuestion
       setSavedQuestions(newData)
-      localStorage.setItem('savedQuestions', JSON.stringify(newData))
+      if (!gameId) {
+        localStorage.setItem('savedQuestions', JSON.stringify(newData))
+      }
     } else {
       newQuestion.id = uuid()
       setSavedQuestions([...savedQuestions, newQuestion])
-      localStorage.setItem('savedQuestions', JSON.stringify([...savedQuestions, newQuestion]))
+      if (!gameId) {
+        localStorage.setItem('savedQuestions', JSON.stringify([...savedQuestions, newQuestion]))
+      }
       navigate(`question/${newQuestion.id}`)
     }
   }
@@ -155,7 +168,7 @@ const GuessCreation = ({
           <Button type="submit" text="Сохранить вопрос" size="small" bgcolor="violet" />
         </div>
 
-        {questionImagePreview ? (
+        {imagePreview || imageUrl ? (
           <>
             <div className={styles.guessImageWrapper}>
               <button
@@ -165,7 +178,7 @@ const GuessCreation = ({
               ></button>
 
               <div className={styles.guessPicture}>
-                <img src={questionImagePreview} alt="картинка вопроса" />
+                <img src={imagePreview || imageUrl} alt="картинка вопроса" />
               </div>
             </div>
           </>

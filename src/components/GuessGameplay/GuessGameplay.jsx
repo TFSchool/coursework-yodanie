@@ -5,7 +5,7 @@ import styles from './GuessGameplay.module.css'
 import Button from '../UI/Buttons/Button'
 import Surrender from './Surrender'
 import Spinner from '../UI/Loader/cube-loader.svg'
-import ImagePlaceHolder from '../../assets/icons/picture3.svg'
+import ImagePlaceHolder from '../../assets/icons/picture.svg'
 
 const GuessGameplay = ({
   isBlurred,

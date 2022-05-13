@@ -30,8 +30,8 @@ const GameplayPage = () => {
   const fetchGameData = async () => {
     setIsLoading(true)
     try {
-      const { data } = await supabase.from('games').select().eq('id', gameId)
-      setGameData(data[0])
+      const { data } = await supabase.from('games').select().eq('id', gameId).limit(1).single()
+      setGameData(data)
     } catch (error) {
       console.log(`Ошибочка... ${error}`)
     } finally {

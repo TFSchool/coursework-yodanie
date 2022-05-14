@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Answers from '../Answers/Answers'
 import cn from 'classnames'
 import styles from './GuessGameplay.module.css'
 import Button from '../UI/Buttons/Button'
 import Surrender from './Surrender'
-import Spinner from '../UI/Loader/cube-loader.svg'
-import ImagePlaceHolder from '../../assets/icons/picture.svg'
+import { ReactComponent as ImagePlaceHolder } from '../../assets/icons/picture.svg'
+import { ReactComponent as Loader } from '../../components/UI/Loader/cube-loader.svg'
 
 const GuessGameplay = ({
   isBlurred,
@@ -21,6 +21,10 @@ const GuessGameplay = ({
   const [errorMessage, setErrorMessage] = useState(null)
 
   const questionData = gameData.questions[currentQuestionIndex]
+
+  useEffect(() => {
+    setImageIsLoading(true)
+  }, [currentQuestionIndex])
 
   const selectAnswerHandler = e => {
     e.preventDefault()
@@ -74,16 +78,16 @@ const GuessGameplay = ({
         <div className={styles.guessImageWrapper}>
           {questionData.imageUrl ? (
             <>
-              {imageIsLoading && <img src={Spinner} alt="sdd" className={styles.guessPicture} />}
+              {imageIsLoading && <Loader className={styles.guessPicture} />}
               <img
                 onLoad={imgOnloadHandler}
-                className={styles.guessPicture}
+                className={cn(styles.guessPicture, imageIsLoading && styles.imageIsLoading)}
                 src={questionData.imageUrl}
                 alt={questionData.questionTitle}
               />
             </>
           ) : (
-            <img src={ImagePlaceHolder} className={styles.guessPicture} alt="картинка" />
+            <ImagePlaceHolder className={styles.guessPicture} />
           )}
         </div>
 

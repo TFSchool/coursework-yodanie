@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import ImagePlaceHolder from '../../assets/icons/picture.svg'
+import { ReactComponent as ImagePlaceHolder } from '../../assets/icons/picture.svg'
 import styles from './QuestionsListItem.module.css'
 
 const QuestionsListItem = ({
@@ -36,13 +36,11 @@ const QuestionsListItem = ({
       </div>
       <div className={styles.card}>
         <h4 className={styles.title}>{title}</h4>
-        <img
-          className={cn(styles.image, !image && styles.placeholder)}
-          src={image || ImagePlaceHolder}
-          alt="Выбранная пользователем картинка."
-          width="60"
-          height="50"
-        />
+        {image ? (
+          <img className={styles.image} src={image} alt="Картинка" />
+        ) : (
+          <ImagePlaceHolder className={cn(styles.image, styles.placeholder)} />
+        )}
       </div>
     </div>
   )

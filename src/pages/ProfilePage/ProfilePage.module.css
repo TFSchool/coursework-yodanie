@@ -38,7 +38,7 @@
   height: 220px;
 }
 
-@media (max-width: 576px) {
+@media (max-width: 990px) {
   .mainPage {
     padding: 15px 0;
   }

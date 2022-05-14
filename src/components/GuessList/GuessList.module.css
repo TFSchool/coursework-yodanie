@@ -23,7 +23,7 @@
   font-weight: 700;
 }
 
-@media (max-width: 576px) {
+@media (max-width: 990px) {
   .guessListTitle {
     margin-bottom: 15px;
 

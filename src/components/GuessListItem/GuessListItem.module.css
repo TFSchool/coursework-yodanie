@@ -51,7 +51,7 @@
   justify-content: space-evenly;
 }
 
-@media (max-width: 576px) {
+@media (max-width: 990px) {
   .guessListItem {
     height: 120px;
     margin-bottom: 15px;

@@ -93,13 +93,7 @@ const MainPage = () => {
               type="text"
               placeholder="Введите код доступа"
             />
-            <Button
-              onClick={playHandler}
-              text="Играть"
-              bgcolor="violet"
-              size="big"
-              customStyle="center"
-            />
+            <Button onClick={playHandler} text="Играть" bgcolor="violet" size="big" />
           </form>
         </div>
 

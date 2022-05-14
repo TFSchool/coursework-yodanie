@@ -30,9 +30,6 @@
 }
 
 @media (max-width: 990px) {
-}
-
-@media (max-width: 576px) {
   .header {
     padding: 5px 0;
     font-size: 20px;

@@ -27,7 +27,7 @@ const GameOver = ({
             <span className={styles.super}>Неплохо!</span>
           )}
         </div>
-        <p className={styles.text}>
+        <div className={styles.text}>
           {isGameWon
             ? 'Вы ответили правильно на все вопросы!'
             : `Вы ответили правильно на ${correctCounter} ${getDeclension(
@@ -35,16 +35,16 @@ const GameOver = ({
                 'вопроса',
                 'вопросов'
               )(correctCounter)} из ${totalQuestions}`}
-        </p>
+        </div>
         <nav className={styles.nav}>
           <Button
             onClick={playAgainHandler}
             bgcolor="violet"
-            size="small"
+            size="medium"
             text="Сыграть заново"
             customStyle="spacing"
           />
-          <MyLink to="/" bgcolor="violet" size="small" text="На главную" customStyle="spacing" />
+          <MyLink to="/" bgcolor="violet" size="medium" text="На главную" customStyle="spacing" />
         </nav>
       </main>
     </>

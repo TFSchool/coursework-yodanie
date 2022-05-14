@@ -105,7 +105,7 @@
   fill: var(--color-violetDark);
 }
 
-@media (max-width: 576px) {
+@media (max-width: 990px) {
   .guessAnswers {
     grid-template-columns: 1fr;
     gap: 10px;
@@ -117,6 +117,9 @@
   .answerInput {
     padding: 5px;
     margin: 0 8px;
+    font-size: 18px;
+  }
+  .answerOption {
     font-size: 18px;
   }
   .answerLabel {

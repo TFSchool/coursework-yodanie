@@ -9,3 +9,10 @@
 .blurred {
   filter: blur(10px);
 }
+
+@media (max-width: 990px) {
+  .main {
+    flex-direction: column;
+    height: auto;
+  }
+}

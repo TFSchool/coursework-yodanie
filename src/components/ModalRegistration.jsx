@@ -94,7 +94,7 @@ const ModalRegistration = ({ modalRegistration, setModalRegistration }) => {
           />
         </label>
 
-        <Button type="submit" text="Зарегистрироваться" size="small" customStyle="center" />
+        <Button type="submit" text="Зарегистрироваться" size="medium" customStyle="center" />
       </Modal>
     </>
   )

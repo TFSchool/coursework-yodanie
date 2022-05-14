@@ -28,7 +28,7 @@
 .tip {
   position: absolute;
   z-index: 1;
-  top: -100%;
+  top: -120%;
   left: 50%;
   transform: translate3d(-50%, 50%, 0);
 
@@ -63,7 +63,10 @@
   opacity: 1;
 }
 
-@media (max-width: 576px) {
+@media (max-width: 990px) {
+  .tip {
+    display: none;
+  }
   .actionItem {
     margin-right: 4px;
     width: 25px;

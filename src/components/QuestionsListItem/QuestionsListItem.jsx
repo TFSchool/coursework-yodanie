@@ -26,14 +26,8 @@ const QuestionsListItem = ({
 
   return (
     <div className={styles.item}>
-      <div className={styles.number}>
-        Вопрос №{number}
-        <button
-          className={styles.deleteIcon}
-          type="button"
-          onClick={deleteQuestionHandler}
-        ></button>
-      </div>
+      <button className={styles.deleteIcon} type="button" onClick={deleteQuestionHandler}></button>
+      <div className={styles.number}>Вопрос №{number}</div>
       <div className={styles.card}>
         <h4 className={styles.title}>{title}</h4>
         {image ? (

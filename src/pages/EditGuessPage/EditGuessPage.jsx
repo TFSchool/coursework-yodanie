@@ -139,7 +139,7 @@ const EditGuessPage = () => {
             text={EDIT_GUESS_SUBMIT}
             size="small"
             customStyle="spacing"
-            bgcolor="green"
+            bgcolor="pink"
             type="button"
           />
         </Nav>

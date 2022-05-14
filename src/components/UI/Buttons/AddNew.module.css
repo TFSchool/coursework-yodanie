@@ -35,10 +35,13 @@
   background-color: white;
 }
 
-@media (max-width: 576px) {
+@media (max-width: 990px) {
   .addNewButton {
     width: 40px;
     height: 40px;
     margin: 10px auto;
+  }
+  .QSButton {
+    margin: 0 20px;
   }
 }

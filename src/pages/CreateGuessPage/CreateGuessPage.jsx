@@ -113,7 +113,7 @@ const CreateGuessPage = () => {
             text={CREATE_NEW_GUESS_SUBMIT}
             size="small"
             customStyle="spacing"
-            bgcolor="green"
+            bgcolor="pink"
             type="button"
           />
         </Nav>

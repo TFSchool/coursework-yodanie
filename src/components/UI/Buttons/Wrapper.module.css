@@ -17,9 +17,9 @@
   color: black;
   font-size: 20px;
   line-height: 1;
-  padding: 15px 40px;
   font-family: 'Nunito', sans-serif;
   font-weight: 700;
+  text-align: center;
 
   border: 2px solid var(--color-violetDark);
   border-radius: 5px;
@@ -34,7 +34,6 @@
 /* Different */
 .violet {
   color: white;
-
   background-color: var(--color-violet);
 }
 .violet:hover {
@@ -58,6 +57,12 @@
 .yellow:hover {
   background-color: var(--color-hoverYellow);
 }
+.pink {
+  background-color: var(--color-pink);
+}
+.pink:hover {
+  background-color: var(--color-hoverPink);
+}
 
 .small {
   width: fit-content;
@@ -73,8 +78,9 @@
   min-width: 150px;
   padding: 10px 30px;
 }
-.big {
+.big .element {
   width: 100%;
+  padding: 15px 40px;
 }
 
 /* Custom styles */
@@ -92,15 +98,22 @@
   margin-left: auto;
 }
 
-@media (max-width: 576px) {
+@media (max-width: 990px) {
   .element {
     top: 0;
     left: 0;
   }
   .small .element {
-    min-width: 50px;
+    min-width: 40px;
     padding: 5px;
     font-size: 15px;
+  }
+  .medium .element {
+    padding: 10px;
+  }
+  .big .element {
+    min-width: 200px;
+    padding: 10px 20px;
   }
   .spacing {
     margin-right: 3px;

@@ -3,7 +3,6 @@ import Answers from '../Answers/Answers'
 import cn from 'classnames'
 import styles from './GuessGameplay.module.css'
 import Button from '../UI/Buttons/Button'
-import Surrender from './Surrender'
 import { ReactComponent as ImagePlaceHolder } from '../../assets/icons/picture.svg'
 import { ReactComponent as Loader } from '../../components/UI/Loader/cube-loader.svg'
 
@@ -17,13 +16,14 @@ const GuessGameplay = ({
 }) => {
   const [imageIsLoading, setImageIsLoading] = useState(true)
   const [selectedAnswer, setSelectedAnswer] = useState(null)
-  const [isSurrender, setIsSurrender] = useState(false)
   const [errorMessage, setErrorMessage] = useState(null)
+  const [imgUrl, setImgUrl] = useState(null)
 
   const questionData = gameData.questions[currentQuestionIndex]
 
   useEffect(() => {
     setImageIsLoading(true)
+    setImgUrl(questionData.imageUrl)
   }, [currentQuestionIndex])
 
   const selectAnswerHandler = e => {
@@ -32,12 +32,6 @@ const GuessGameplay = ({
     e.currentTarget.name === selectedAnswer
       ? setSelectedAnswer(null)
       : setSelectedAnswer(e.currentTarget.name)
-  }
-  const surrenderHandler = () => {
-    setIsSurrender(true)
-    setTimeout(() => {
-      setIsSurrender(false)
-    }, 3000)
   }
 
   const imgOnloadHandler = () => {
@@ -54,24 +48,15 @@ const GuessGameplay = ({
     }
     setSelectedAnswer(null)
     setCurrentQuestionIndex(prev => prev + 1)
-    setImageIsLoading(true)
   }
 
   return (
     <>
       <main className={cn(styles.guessGameplay, isBlurred && styles.blurred)}>
-        {isSurrender && <Surrender />}
         <div className={styles.info}>
           <div className={styles.totalQuestions}>{`${
             currentQuestionIndex + 1
           }/${totalQuestions}`}</div>
-          <Button
-            text="Сдаться"
-            onClick={surrenderHandler}
-            size="small"
-            bgcolor="white"
-            customStyle="spacing"
-          />
         </div>
 
         <h1 className={styles.questionTitle}>{questionData.questionTitle}</h1>
@@ -79,12 +64,14 @@ const GuessGameplay = ({
           {questionData.imageUrl ? (
             <>
               {imageIsLoading && <Loader className={styles.guessPicture} />}
-              <img
-                onLoad={imgOnloadHandler}
-                className={cn(styles.guessPicture, imageIsLoading && styles.imageIsLoading)}
-                src={questionData.imageUrl}
-                alt={questionData.questionTitle}
-              />
+              {imgUrl && (
+                <img
+                  onLoad={imgOnloadHandler}
+                  className={styles.guessPicture}
+                  src={imgUrl}
+                  alt={questionData.questionTitle}
+                />
+              )}
             </>
           ) : (
             <ImagePlaceHolder className={styles.guessPicture} />

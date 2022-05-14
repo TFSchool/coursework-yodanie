@@ -63,25 +63,25 @@
   object-fit: contain;
   object-position: center;
 }
-.imageIsLoading {
-  display: none;
-}
 
 .actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   position: relative;
   margin: 20px 0;
   display: flex;
 }
 
 .error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   opacity: 0;
-  /* transform: scale(0); */
+  transform: scale(0);
 
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 1;
-  transform: translate3d(-50%, -50%, 0) scale(0);
+  text-align: center;
+  transform: scale(0);
 
   color: red;
   font-size: 20px;
@@ -89,5 +89,32 @@
 }
 .errorActive {
   opacity: 1;
-  transform: translate3d(-50%, -50%, 0) scale(1);
+  transform: scale(1);
+}
+
+@media (max-width: 990px) {
+  .guessGameplay {
+    padding: 10px 0;
+  }
+  .questionTitle {
+    font-size: 25px;
+    padding: 0;
+  }
+  .guessImageWrapper {
+    width: 100%;
+    height: 100%;
+  }
+  .info {
+    top: 2%;
+    right: 0;
+  }
+  .totalQuestions {
+    font-size: 25px;
+  }
+  .actions {
+    margin: 10px 0;
+  }
+  .error {
+    font-size: 16px;
+  }
 }

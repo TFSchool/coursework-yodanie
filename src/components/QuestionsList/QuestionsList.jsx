@@ -43,7 +43,7 @@ const QuestionsList = ({
 
         <NavLink
           to={gameId ? `/edit-guess/${gameId}` : '/create-guess'}
-          className={btnStyles.addNewButton}
+          className={cn(btnStyles.addNewButton, btnStyles.QSButton)}
         ></NavLink>
       </section>
     </>

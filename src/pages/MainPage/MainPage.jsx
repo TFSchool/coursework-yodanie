@@ -79,13 +79,7 @@ const MainPage = () => {
         />
 
         <div className={styles.menu}>
-          <img
-            className={styles.quote}
-            src={quoteImage}
-            alt="Guess it easy!"
-            width="327"
-            height="181"
-          />
+          <img className={styles.quote} src={quoteImage} alt="Guessy" />
           <div className={styles.logo}>Guessy</div>
           <form className={styles.form}>
             <div className={cn(styles.userMessage, errorMessage && styles.error)}>
@@ -101,7 +95,7 @@ const MainPage = () => {
             />
             <Button
               onClick={playHandler}
-              text="Поиграть"
+              text="Играть"
               bgcolor="violet"
               size="big"
               customStyle="center"

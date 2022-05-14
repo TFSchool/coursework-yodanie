@@ -4,10 +4,12 @@ import MyLink from '../UI/Buttons/MyLink'
 import styles from './Nav.module.css'
 import { useAuth } from '../../contexts/AuthContext'
 import { useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
-import { CREATE_NEW_GUESS_PAGE, CREATE_NEW_GUESS_SUBMIT } from '../../constants'
+import { useState, useEffect } from 'react'
+import { CREATE_NEW_GUESS_PAGE } from '../../constants'
+import cn from 'classnames'
 
 const Nav = ({ currentPage, signInHandler, registrationHandler, children }) => {
+  const [burgerActive, setBurgerActive] = useState(false)
   const logout = () => supabase.auth.signOut()
 
   const user = supabase.auth.user()
@@ -17,6 +19,10 @@ const Nav = ({ currentPage, signInHandler, registrationHandler, children }) => {
   useEffect(() => {
     if (user === null && currentPage !== 'gameplay') navigate('/')
   }, [session])
+
+  const burgerHandler = () => {
+    setBurgerActive(prev => !prev)
+  }
 
   return (
     <>
@@ -63,7 +69,7 @@ const Nav = ({ currentPage, signInHandler, registrationHandler, children }) => {
             <>
               <MyLink
                 to="/create-guess"
-                bgcolor="yellow"
+                bgcolor="green"
                 size="small"
                 text={CREATE_NEW_GUESS_PAGE}
                 customStyle="spacing"

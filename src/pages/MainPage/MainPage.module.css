@@ -2,12 +2,13 @@
   position: relative;
   padding: 40px 0;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   transition: all 0.2s linear;
+  overflow: hidden;
 }
 .mainPageBlurred {
   filter: blur(10px);
@@ -58,8 +59,10 @@
 
 .quote {
   position: absolute;
-  top: -160px;
-  left: -290px;
+  width: 330px;
+  height: 180px;
+  top: -35%;
+  left: -60%;
   z-index: 1;
 }
 
@@ -70,7 +73,7 @@
   font-size: 85px;
   font-weight: 700;
   line-height: 1;
-  color: #7774e1;
+  color: var(--color-violet);
   text-transform: uppercase;
   text-shadow: 1px 1px 0 #3e3d78, 2px 2px 0 #3e3d78, 3px 3px 0 #3e3d78, 4px 4px 0 #3e3d78,
     5px 5px 0 #3e3d78, 6px 6px 0 #3e3d78;
@@ -138,4 +141,44 @@ input[type='number']:hover,
 input[type='number']:focus {
   appearance: none;
   -moz-appearance: textfield;
+}
+
+@media (max-width: 990px) {
+  .quote {
+    display: none;
+    position: absolute;
+    width: 160px;
+    height: 90px;
+    top: -20%;
+    left: 50%;
+  }
+  .menu {
+    width: 100%;
+
+    padding: 30px 10px;
+  }
+  .circle {
+    height: 130px;
+    width: 130px;
+  }
+  .circleYellow {
+    top: -5%;
+    left: -5%;
+  }
+
+  .circlePink {
+    bottom: -5%;
+    right: -5%;
+  }
+  .questionMark {
+    width: 50px;
+    height: 70px;
+  }
+  .logo {
+    font-size: 60px;
+    margin-bottom: 10px;
+  }
+  .pincode {
+    font-size: 13px;
+  }
 }

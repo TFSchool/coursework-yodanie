@@ -81,7 +81,7 @@ const ModalSignIn = ({ modalSignInActive, setModalSignInActive }) => {
           />
         </label>
 
-        <Button type="submit" size="small" text="Войти" customStyle="center" />
+        <Button type="submit" size="medium" text="Войти" customStyle="center" />
       </Modal>
     </>
   )

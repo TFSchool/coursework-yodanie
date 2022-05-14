@@ -42,11 +42,9 @@ const GuessGameplay = ({
   return (
     <>
       <main className={cn(styles.guessGameplay, isBlurred && styles.blurred)}>
-        <div className={styles.info}>
-          <div className={styles.totalQuestions}>{`${
-            currentQuestionIndex + 1
-          }/${totalQuestions}`}</div>
-        </div>
+        <div className={styles.totalQuestions}>{`${
+          currentQuestionIndex + 1
+        }/${totalQuestions}`}</div>
 
         <h1 className={styles.questionTitle}>{questionData.questionTitle}</h1>
         <div className={styles.guessImageWrapper}>

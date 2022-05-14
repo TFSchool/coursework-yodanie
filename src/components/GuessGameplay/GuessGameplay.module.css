@@ -15,23 +15,22 @@
   filter: blur(10px);
 }
 
-.info {
-  display: flex;
+.totalQuestions {
+  /* display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; */
   position: absolute;
-  top: 5%;
-  right: 2%;
+  top: 2%;
+  right: 0;
   z-index: 1;
   font-size: 40px;
 }
-.totalQuestions {
-  margin-bottom: 10px;
-}
 
 .questionTitle {
+  max-width: 80%;
   display: block;
 
+  margin: 0 auto;
   padding: 5px 20px;
 
   color: #3e3d78;
@@ -97,19 +96,15 @@
     padding: 10px 0;
   }
   .questionTitle {
-    font-size: 25px;
+    font-size: 20px;
     padding: 0;
   }
   .guessImageWrapper {
     width: 100%;
     height: 100%;
   }
-  .info {
-    top: 2%;
-    right: 0;
-  }
   .totalQuestions {
-    font-size: 25px;
+    font-size: 20px;
   }
   .actions {
     margin: 10px 0;

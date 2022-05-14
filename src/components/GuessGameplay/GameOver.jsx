@@ -20,7 +20,7 @@ const GameOver = ({
   return (
     <>
       <main className={cn(styles.gameover, isBlurred && styles.blurred)}>
-        <div className={cn(styles.star, isGameWon && styles.starWin)}>
+        <div className={styles.star}>
           {isGameWon ? (
             <span className={styles.super}>Супер!</span>
           ) : (

@@ -15,12 +15,9 @@
 }
 
 .star {
-  background: url(./Star.svg) center no-repeat;
+  background: url(./Star2.svg) center no-repeat;
   background-size: contain;
   height: 400px;
-}
-.starWin {
-  background: url(./Star2.svg) center no-repeat;
 }
 
 .super {

@@ -125,12 +125,17 @@ const GuessCreation = ({
       setValidationError(error)
       return
     }
+    let imageExtension
+    if (imageFile) {
+      const splitted = imageFile.name.split('.')
+      imageExtension = splitted[splitted.length - 1]
+    }
     const newQuestion = {
       questionTitle: trimmedTitle,
       answersData: trimmedAnswers,
       correctAnswer: selectedAnswer,
       imagePreview,
-      imageName: imagePreview && `${uuid()}-${imageFile.name}`,
+      imageName: imageFile && `${uuid()}.${imageExtension}`,
       imageUrl,
     }
     if (urlParams.id) {

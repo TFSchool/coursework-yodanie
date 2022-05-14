@@ -80,16 +80,6 @@ const EditGuessPage = () => {
 
     setIsLoading(true)
     try {
-      // Аплоад новых картинок
-      for (const question of savedQuestions) {
-        if (question.imageName && !question.imageUrl) {
-          const imgName = question.imageName
-          const image64 = await fetch(question.imagePreview)
-          const blob = await image64.blob()
-          const imageFile = new File([blob], imgName, { type: 'image' })
-          await supabase.storage.from('images').upload(imgName, imageFile)
-        }
-      }
       // Delete старых неиспользуемых:
       const newImages = savedQuestions.map(q => q.imageName)
       const imagesToDelete = initialData.questions.reduce((acc, question) => {
@@ -101,6 +91,17 @@ const EditGuessPage = () => {
       if (imagesToDelete.length > 0) {
         await supabase.storage.from('images').remove(imagesToDelete)
       }
+      // Аплоад новых картинок
+      for (const question of savedQuestions) {
+        if (question.imageName && !question.imageUrl) {
+          const imgName = question.imageName
+          const image64 = await fetch(question.imagePreview)
+          const blob = await image64.blob()
+          const imageFile = new File([blob], imgName, { type: 'image' })
+          await supabase.storage.from('images').upload(imgName, imageFile)
+        }
+      }
+
       // Перезапись таблицы
       await supabase.from('games').update(gameData).match({ id: gameId })
       setSuccessMessage('Игра успешно отредактирована!')
@@ -111,7 +112,7 @@ const EditGuessPage = () => {
     }
   }
 
-  const modalNewGuessHandler = () => {
+  const modalEditGuessHandler = () => {
     setModalEditGuessActive(true)
     setErrorMessage(null)
     setSuccessMessage(null)
@@ -135,7 +136,7 @@ const EditGuessPage = () => {
       <Header pageTitle="Редактирование квиза">
         <Nav currentPage="edit-guess">
           <Button
-            onClick={modalNewGuessHandler}
+            onClick={modalEditGuessHandler}
             text={EDIT_GUESS_SUBMIT}
             size="small"
             customStyle="spacing"

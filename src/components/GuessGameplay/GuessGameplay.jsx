@@ -17,13 +17,11 @@ const GuessGameplay = ({
   const [imageIsLoading, setImageIsLoading] = useState(true)
   const [selectedAnswer, setSelectedAnswer] = useState(null)
   const [errorMessage, setErrorMessage] = useState(null)
-  const [imgUrl, setImgUrl] = useState(null)
 
   const questionData = gameData.questions[currentQuestionIndex]
 
   useEffect(() => {
     setImageIsLoading(true)
-    setImgUrl(questionData.imageUrl)
   }, [currentQuestionIndex])
 
   const selectAnswerHandler = e => {
@@ -64,14 +62,12 @@ const GuessGameplay = ({
           {questionData.imageUrl ? (
             <>
               {imageIsLoading && <Loader className={styles.guessPicture} />}
-              {imgUrl && (
-                <img
-                  onLoad={imgOnloadHandler}
-                  className={styles.guessPicture}
-                  src={imgUrl}
-                  alt={questionData.questionTitle}
-                />
-              )}
+              <img
+                onLoad={imgOnloadHandler}
+                className={styles.guessPicture}
+                src={questionData.imageUrl}
+                alt={questionData.questionTitle}
+              />
             </>
           ) : (
             <ImagePlaceHolder className={styles.guessPicture} />

@@ -111,8 +111,11 @@
   .medium .element {
     padding: 10px;
   }
+  .big {
+    width: 100%;
+  }
   .big .element {
-    min-width: 200px;
+    width: 100%;
     padding: 10px 20px;
   }
   .spacing {

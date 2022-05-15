@@ -13,7 +13,10 @@ const ModalEditGuess = ({
   setErrorMessage,
   successMessage,
 }) => {
-  const titleInputHandler = e => (setGameTitle(e.target.value), setErrorMessage(null))
+  const titleInputHandler = e => {
+    setGameTitle(e.target.value)
+    setErrorMessage(null)
+  }
   const user = supabase.auth.user()
   return (
     <Modal

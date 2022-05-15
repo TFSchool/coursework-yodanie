@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react'
-import Answers from '../Answers/Answers'
 import cn from 'classnames'
-import styles from './GuessGameplay.module.css'
-import Button from '../UI/Buttons/Button'
+import { useState } from 'react'
 import { ReactComponent as ImagePlaceHolder } from '../../assets/icons/picture.svg'
-import { ReactComponent as Loader } from '../../components/UI/Loader/cube-loader.svg'
+import Answers from '../Answers/Answers'
+import Button from '../UI/Buttons/Button'
+import styles from './GuessGameplay.module.css'
 
 const GuessGameplay = ({
   isBlurred,

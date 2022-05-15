@@ -10,7 +10,6 @@ const ModalSignIn = ({ modalSignInActive, setModalSignInActive }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState(null)
-  const [successMessage, setSuccessMessage] = useState(null)
 
   const emailHandler = e => {
     setEmail(e.target.value.trim())
@@ -32,7 +31,7 @@ const ModalSignIn = ({ modalSignInActive, setModalSignInActive }) => {
 
     try {
       setIsLoading(true)
-      const { user, error } = await supabase.auth.signIn({
+      const { error } = await supabase.auth.signIn({
         email: email,
         password: password,
       })
@@ -57,7 +56,6 @@ const ModalSignIn = ({ modalSignInActive, setModalSignInActive }) => {
         design="grey"
         title="Авторизация"
         errorMessage={errorMessage}
-        successMessage={successMessage}
       >
         <label>
           Введите Email

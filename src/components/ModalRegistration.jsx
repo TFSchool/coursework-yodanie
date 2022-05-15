@@ -42,9 +42,10 @@ const ModalRegistration = ({ modalRegistration, setModalRegistration }) => {
         password: password,
       })
       if (error) {
-        setErrorMessage(error)
+        setErrorMessage(error.error_description || error.message)
+      } else {
+        setSuccessMessage('Регистрация прошла успешно!')
       }
-      setSuccessMessage('Регистрация прошла успешно!')
     } finally {
       setIsLoading(false)
     }

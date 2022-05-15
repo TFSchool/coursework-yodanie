@@ -135,7 +135,7 @@ const GuessCreation = ({
       answersData: trimmedAnswers,
       correctAnswer: selectedAnswer,
       imagePreview,
-      imageName: imageFile && `${uuid()}.${imageExtension}`,
+      imageName: imagePreview && `${uuid()}.${imageExtension}`,
       imageUrl,
     }
     if (urlParams.id) {

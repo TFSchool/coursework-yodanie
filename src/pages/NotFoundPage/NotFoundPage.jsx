@@ -8,7 +8,7 @@ const NotFoundPage = () => (
         <span className={styles.error}>404</span>
       </div>
     </div>
-    <p className={styles.text}>Такая страница не существует или она была удалена.</p>
+    <p className={styles.text}>Квиз/страница не существует или она была удалена.</p>
     <MyLink to="/" text="На главную" bgcolor="violet" size="medium" />
   </main>
 )

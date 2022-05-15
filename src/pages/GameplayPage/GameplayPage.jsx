@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Header from '../../components/Header/Header'
 import GuessGameplay from '../../components/GuessGameplay/GuessGameplay'
 import { supabase } from '../../supabaseClient'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import Loader from '../../components/UI/Loader/Loader'
 import GameOver from '../../components/GuessGameplay/GameOver'
 import Nav from '../../components/Nav/Nav'
@@ -22,6 +22,7 @@ const GameplayPage = () => {
   const isGameWon = totalQuestions === correctCounter
   const isBlurred = modalSignInActive || modalRegistration
   const { gameId } = useParams()
+  const navigate = useNavigate()
 
   useEffect(() => {
     fetchGameData()
@@ -30,7 +31,15 @@ const GameplayPage = () => {
   const fetchGameData = async () => {
     setIsLoading(true)
     try {
-      const { data } = await supabase.from('games').select().eq('id', gameId).limit(1).single()
+      const { error, data } = await supabase
+        .from('games')
+        .select()
+        .eq('id', gameId)
+        .limit(1)
+        .single()
+      if (error) {
+        return navigate('/404')
+      }
       setGameData(data)
     } catch (error) {
       console.log(`Ошибочка... ${error}`)

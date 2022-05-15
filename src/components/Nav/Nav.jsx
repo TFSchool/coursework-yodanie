@@ -1,15 +1,13 @@
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { CREATE_NEW_GUESS_PAGE } from '../../constants'
+import { useAuth } from '../../contexts/AuthContext'
 import { supabase } from '../../supabaseClient'
 import Button from '../UI/Buttons/Button'
 import MyLink from '../UI/Buttons/MyLink'
 import styles from './Nav.module.css'
-import { useAuth } from '../../contexts/AuthContext'
-import { useNavigate } from 'react-router-dom'
-import { useState, useEffect } from 'react'
-import { CREATE_NEW_GUESS_PAGE } from '../../constants'
-import cn from 'classnames'
 
 const Nav = ({ currentPage, signInHandler, registrationHandler, children }) => {
-  const [burgerActive, setBurgerActive] = useState(false)
   const logout = () => supabase.auth.signOut()
 
   const user = supabase.auth.user()
@@ -19,10 +17,6 @@ const Nav = ({ currentPage, signInHandler, registrationHandler, children }) => {
   useEffect(() => {
     if (user === null && currentPage !== 'gameplay') navigate('/')
   }, [session])
-
-  const burgerHandler = () => {
-    setBurgerActive(prev => !prev)
-  }
 
   return (
     <>

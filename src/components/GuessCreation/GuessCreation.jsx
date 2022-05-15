@@ -182,9 +182,11 @@ const GuessCreation = ({
                 onClick={deleteImageHandler}
               ></button>
 
-              <div className={styles.guessPicture}>
-                <img src={imagePreview || imageUrl} alt="картинка вопроса" />
-              </div>
+              <img
+                src={imagePreview || imageUrl}
+                alt="картинка вопроса"
+                className={styles.guessPicture}
+              />
             </div>
           </>
         ) : (

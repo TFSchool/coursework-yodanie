@@ -31,9 +31,12 @@ export const validateSignUp = (email, password, passwordConfirm) => {
   return null
 }
 
-export const validateSignIn = email => {
+export const validateSignIn = (email, password) => {
   if (/^\S+@\S+\.\S+$/.test(email) === false) {
     return 'Введите корректный email'
+  }
+  if (password.length === 0) {
+    return 'Введите пароль'
   }
 
   return null

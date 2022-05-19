@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 import QuestionsListItem from '../QuestionsListItem/QuestionsListItem'
 import styles from './QuestionsList.module.css'
 import btnStyles from '../../components/UI/Buttons/AddNew.module.css'
+import { useState } from 'react'
 
 const QuestionsList = ({
   gameId,
@@ -10,6 +11,8 @@ const QuestionsList = ({
   setSavedQuestions,
   setIndexOfDeletedQuestion,
 }) => {
+  const [currentDragIndex, setCurrentDragIndex] = useState(null)
+
   return (
     <>
       <section className={styles.questionsList}>
@@ -25,10 +28,12 @@ const QuestionsList = ({
               className={({ isActive }) => cn(styles.navlink, isActive && styles.activeLink)}
             >
               <QuestionsListItem
+                index={index}
+                currentDragIndex={currentDragIndex}
+                setCurrentDragIndex={setCurrentDragIndex}
                 gameId={gameId}
                 key={question.id}
                 id={question.id}
-                number={index + 1}
                 title={question.questionTitle}
                 image={question.imagePreview || question.imageUrl}
                 savedQuestions={savedQuestions}

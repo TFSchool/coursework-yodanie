@@ -1,17 +1,22 @@
 import cn from 'classnames'
 import { ReactComponent as ImagePlaceHolder } from '../../assets/icons/picture.svg'
 import styles from './QuestionsListItem.module.css'
+import { useState } from 'react'
 
 const QuestionsListItem = ({
+  index,
+  currentDragIndex,
+  setCurrentDragIndex,
   gameId,
   id,
   title,
-  number,
   image,
   savedQuestions,
   setSavedQuestions,
   setIndexOfDeletedQuestion,
 }) => {
+  const [draggedOver, setDraggedOver] = useState(false)
+
   const deleteQuestionHandler = e => {
     e.preventDefault()
     setIndexOfDeletedQuestion(savedQuestions.findIndex(q => q.id === id))
@@ -24,10 +29,40 @@ const QuestionsListItem = ({
     }
   }
 
+  const dragStartHandler = e => {
+    setCurrentDragIndex(index)
+  }
+  const dragLeaveHandler = e => {
+    setDraggedOver(false)
+  }
+  const dragEndHandler = e => {
+    setDraggedOver(false)
+  }
+  const dragOverHandler = e => {
+    e.preventDefault()
+    setDraggedOver(true)
+  }
+  const dropHandler = e => {
+    e.preventDefault()
+    const copy = [...savedQuestions]
+    copy[index] = savedQuestions[currentDragIndex]
+    copy[currentDragIndex] = savedQuestions[index]
+    setSavedQuestions(copy)
+    setDraggedOver(false)
+  }
+
   return (
-    <div className={styles.item}>
+    <div
+      className={cn(styles.item, draggedOver && styles.draggedOver)}
+      draggable={true}
+      onDragStart={dragStartHandler}
+      onDragLeave={dragLeaveHandler}
+      onDragEnd={dragEndHandler}
+      onDragOver={dragOverHandler}
+      onDrop={dropHandler}
+    >
       <button className={styles.deleteIcon} type="button" onClick={deleteQuestionHandler}></button>
-      <div className={styles.number}>Вопрос №{number}</div>
+      <div className={styles.number}>Вопрос №{index + 1}</div>
       <div className={styles.card}>
         <h4 className={styles.title}>{title}</h4>
         {image ? (

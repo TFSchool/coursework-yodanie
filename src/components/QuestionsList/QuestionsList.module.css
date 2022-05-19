@@ -38,7 +38,7 @@
     overflow-x: auto;
 
     border-right: none;
-    border-bottom: 3px dashed var(--color-violetDark);
+    border-bottom: 3px dashed var(--color-violet);
   }
   .navlink {
     min-width: 40%;

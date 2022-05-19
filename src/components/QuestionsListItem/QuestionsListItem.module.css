@@ -7,9 +7,12 @@
   height: 100%;
   padding: 10px;
   margin-bottom: 5px;
-  cursor: pointer;
+  cursor: grab;
 }
-
+.draggedOver {
+  /* background-color: hsla(241, 33%, 36%, 0.8); */
+  background-color: var(--color-yellow);
+}
 .number {
   font-size: 20px;
   margin-bottom: 10px;

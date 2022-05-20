@@ -12,15 +12,6 @@
 .questionsList a:visited {
   color: inherit;
 }
-.navlink {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-.activeLink {
-  background-color: rgba(214, 214, 226, 0.64);
-}
 
 .info {
   padding: 10px;

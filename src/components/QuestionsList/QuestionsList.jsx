@@ -18,29 +18,19 @@ const QuestionsList = ({
       <section className={styles.questionsList}>
         {savedQuestions.length > 0 ? (
           savedQuestions.map((question, index) => (
-            <NavLink
-              to={
-                gameId
-                  ? `/edit-guess/${gameId}/question/${question.id}`
-                  : `/create-guess/question/${question.id}`
-              }
+            <QuestionsListItem
+              index={index}
+              currentDragIndex={currentDragIndex}
+              setCurrentDragIndex={setCurrentDragIndex}
+              gameId={gameId}
               key={question.id}
-              className={({ isActive }) => cn(styles.navlink, isActive && styles.activeLink)}
-            >
-              <QuestionsListItem
-                index={index}
-                currentDragIndex={currentDragIndex}
-                setCurrentDragIndex={setCurrentDragIndex}
-                gameId={gameId}
-                key={question.id}
-                id={question.id}
-                title={question.questionTitle}
-                image={question.imagePreview || question.imageUrl}
-                savedQuestions={savedQuestions}
-                setSavedQuestions={setSavedQuestions}
-                setIndexOfDeletedQuestion={setIndexOfDeletedQuestion}
-              />
-            </NavLink>
+              id={question.id}
+              title={question.questionTitle}
+              image={question.imagePreview || question.imageUrl}
+              savedQuestions={savedQuestions}
+              setSavedQuestions={setSavedQuestions}
+              setIndexOfDeletedQuestion={setIndexOfDeletedQuestion}
+            />
           ))
         ) : (
           <div className={styles.info}>Список вопросов пуст</div>

@@ -2,6 +2,7 @@ import cn from 'classnames'
 import { ReactComponent as ImagePlaceHolder } from '../../assets/icons/picture.svg'
 import styles from './QuestionsListItem.module.css'
 import { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 
 const QuestionsListItem = ({
   index,
@@ -29,13 +30,13 @@ const QuestionsListItem = ({
     }
   }
 
-  const dragStartHandler = e => {
+  const dragStartHandler = () => {
     setCurrentDragIndex(index)
   }
-  const dragLeaveHandler = e => {
+  const dragLeaveHandler = () => {
     setDraggedOver(false)
   }
-  const dragEndHandler = e => {
+  const dragEndHandler = () => {
     setDraggedOver(false)
   }
   const dragOverHandler = e => {
@@ -52,8 +53,11 @@ const QuestionsListItem = ({
   }
 
   return (
-    <div
-      className={cn(styles.item, draggedOver && styles.draggedOver)}
+    <NavLink
+      to={gameId ? `/edit-guess/${gameId}/question/${id}` : `/create-guess/question/${id}`}
+      className={({ isActive }) =>
+        cn(styles.item, isActive && styles.active, draggedOver && styles.draggedOver)
+      }
       draggable={true}
       onDragStart={dragStartHandler}
       onDragLeave={dragLeaveHandler}
@@ -71,7 +75,7 @@ const QuestionsListItem = ({
           <ImagePlaceHolder className={cn(styles.image, styles.placeholder)} />
         )}
       </div>
-    </div>
+    </NavLink>
   )
 }
 
